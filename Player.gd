@@ -16,6 +16,8 @@ var speed = 300
 var intended_speed = 300
 var dir := Vector2.ZERO
 var velocity: Vector2
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

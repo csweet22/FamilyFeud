@@ -14,6 +14,11 @@ var is_doublev = false
 var is_doubleh = false
 var is_quad = false
 
+
+signal object_became_quad
+signal quad_was_broken
+signal double_was_broken
+
 func _ready():
 	id = Singleton.obj_id
 	Singleton.obj_id += 1
@@ -74,6 +79,7 @@ func split(body):
 			obj.velocity = obj.speed * get_random_vector()
 			obj.call_deferred("set_single")
 			get_parent().add_child(obj)
+			emit_signal("double_was_broken")
 			print("horz to sing")
 	elif is_doublev:
 		if abs(body.velocity.x) > abs(body.velocity.y * 2):
@@ -83,6 +89,7 @@ func split(body):
 			obj.velocity = -1 * velocity
 			obj.call_deferred("set_single")
 			get_parent().add_child(obj)
+			emit_signal("double_was_broken")
 			print("vert to sing")
 	elif is_quad:
 		if abs(body.velocity.x) > abs(body.velocity.y):
@@ -101,6 +108,7 @@ func split(body):
 			obj.call_deferred("set_double_v")
 			get_parent().add_child(obj)
 			print("quad to horz")
+		emit_signal("quad_was_broken")
 
 func get_random_vector():
 	var angle = rand_range(PI/(3*2), PI/3)
@@ -192,6 +200,7 @@ func set_double_v():
 
 func set_quad():
 	all_off()
+	emit_signal("object_became_quad")
 	flag = 4
 	$Quad/QuadSprite1.visible = true
 	$Quad/QuadSprite2.visible = true
