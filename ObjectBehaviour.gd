@@ -34,7 +34,7 @@ func _physics_process(delta):
 	
 	if collision:
 #		print(collision.collider.get_collision_layer())
-		if (collision.collider.get_collision_layer() == 2) or collision.collider.get_collision_layer() == 1:
+		if (collision.collider.get_collision_layer() == 2):
 			velocity = velocity.bounce(collision.normal)
 		else:
 			if can_combine(self, collision.collider):
@@ -44,8 +44,11 @@ func _physics_process(delta):
 		# else hit the player
 
 func can_combine(obj1, obj2):
-	if obj1.flag == obj2.flag:
-		return true
+	if not obj2.is_in_group("Player"):
+		if obj1.flag == obj2.flag:
+			return true
+		else:
+			return false
 	else:
 		return false
 
