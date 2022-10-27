@@ -23,6 +23,7 @@ func _ready():
 	id = Singleton.obj_id
 	Singleton.obj_id += 1
 	all_off()
+	set_single()
 
 func _process(delta):
 	if Input.is_key_pressed(KEY_1):

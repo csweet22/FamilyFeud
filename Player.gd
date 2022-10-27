@@ -23,7 +23,6 @@ func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	print(get_collision_mask_bit(2))
 	update()
 	if Input.is_action_just_pressed("dash"):
 		try_dash()
