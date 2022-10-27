@@ -2,17 +2,17 @@ extends Node
 
 
 var s = 0
-var score = 0
 var prog_time = 0
 func _on_counter_timeout():
 	#score += ms
 	s+=1
-	score+=1
+	Singleton.score+=1
 	pass
 
 func _process(delta):
-	$Score.set_text("SCORE:" + str(score))
+	$Score.set_text("SCORE:" + str(Singleton.score))
 	score_multipliers()
+	$ProgressBar.value = ($ProgressBar/ProgressTime.time_left / $ProgressBar/ProgressTime.wait_time)*100
 		
 
 func score_multipliers():
@@ -26,20 +26,21 @@ func score_multipliers():
 	
 func _on_KinematicBody2D_double_was_broken():
 	print("double broken")
-	score += 100
+	Singleton.score += 100
 
 func _quad_was_broken():
 	print("quad broken!")
-	score += 600
+	Singleton.score += 600
+	$ProgressBar/ProgressTime.stop()
 	
 func _object_became_quad():
 	print("an obj has become quad!")
-	_on_ProgressTime_timeout()
+	$ProgressBar/ProgressTime.start()
 
 
 func _on_ProgressTime_timeout():
-	while $ProgressBar.value <100:
-		$ProgressBar.value += 1
+	print("Game over")
+	get_tree().change_scene("res://GameOverScreen.tscn")
 		
 
 	
