@@ -1,3 +1,26 @@
-[gd_scene format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://mario_kart_f2.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Score.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=2]
+size = 23
+outline_size = 1
+outline_color = Color( 0.768627, 0.121569, 0.121569, 1 )
+font_data = ExtResource( 2 )
 
 [node name="GameManager" type="Node"]
+
+[node name="Score" type="RichTextLabel" parent="."]
+margin_left = 769.0
+margin_top = 9.0
+margin_right = 1025.0
+margin_bottom = 61.0
+custom_fonts/normal_font = SubResource( 2 )
+script = ExtResource( 3 )
+
+[node name="counter" type="Timer" parent="Score"]
+wait_time = 0.316
+autostart = true
+
+[connection signal="timeout" from="Score/counter" to="Score" method="_on_counter_timeout"]

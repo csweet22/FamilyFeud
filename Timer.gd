@@ -1,0 +1,10 @@
+extends RichTextLabel
+
+
+
+
+
+
+
+
+
