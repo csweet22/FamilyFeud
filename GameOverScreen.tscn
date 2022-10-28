@@ -82,6 +82,12 @@ focus_neighbour_top = NodePath("../Restart")
 custom_fonts/font = SubResource( 7 )
 text = "  QUIT  "
 
+[node name="Score_Board" type="VBoxContainer" parent="."]
+margin_left = 42.0
+margin_top = 33.0
+margin_right = 270.0
+margin_bottom = 530.0
+
 [node name="Score_Display" type="Label" parent="."]
 margin_left = 137.0
 margin_top = 456.0
@@ -91,6 +97,38 @@ custom_fonts/font = SubResource( 5 )
 text = "SCORE"
 align = 1
 
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 677.0
+margin_top = 242.0
+margin_right = 933.0
+margin_bottom = 334.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 256.0
+margin_bottom = 14.0
+text = "ENTER YOUR NAME:"
+align = 1
+valign = 1
+
+[node name="Container" type="Container" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 256.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 1.195, 30 )
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/Container"]
+margin_top = -4.0
+margin_right = 256.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 100, 30 )
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+margin_top = 52.0
+margin_right = 256.0
+margin_bottom = 72.0
+text = "Save Score!"
+
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="ready" from="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_ready"]
+[connection signal="button_down" from="VBoxContainer/Button" to="." method="_on_Button_button_down"]
