@@ -2,8 +2,10 @@ extends KinematicBody2D
 
 var object = load("res://Object.tscn")
 
-var dir = Vector2(1,1)
-var speed = 300
+onready var timer := $DivideTimer
+
+var dir = get_random_vector()
+var speed = 100
 var velocity = speed * dir
 
 var flag = 1
@@ -14,6 +16,7 @@ var is_doublev = false
 var is_doubleh = false
 var is_quad = false
 
+var can_combine = false
 
 signal object_became_quad
 signal quad_was_broken
@@ -46,22 +49,21 @@ func _process(delta):
 		set_quad()
 
 func _physics_process(delta):
+	print(can_combine)
 	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
 	
 	if collision:
-#		print(collision.collider.get_collision_layer())
 		if (collision.collider.get_collision_layer() == 2):
 			velocity = velocity.bounce(collision.normal)
 		else:
-			if can_combine(self, collision.collider):
+			if can_combine and can_combine(self, collision.collider):
 				combine(collision.collider, collision)
 			else:
 				velocity = velocity.bounce(collision.normal)
-		# else hit the player
 
 func can_combine(obj1, obj2):
 	if not obj2.is_in_group("Player"):
-		if obj1.flag == obj2.flag:
+		if obj1.flag == obj2.flag and obj1.flag != 4:
 			return true
 		else:
 			return false
@@ -71,7 +73,6 @@ func can_combine(obj1, obj2):
 func combine(obj2, collision: KinematicCollision2D):
 	if (id > obj2.id):
 		if flag == 1:
-			pass
 			if abs((collision.position - position).x) > abs((collision.position - position).y):
 				call_deferred("set_double_h")
 			else:
@@ -82,44 +83,46 @@ func combine(obj2, collision: KinematicCollision2D):
 
 func split(body):
 	
+	
+	var obj = object.instance()
 	if is_doubleh:
 		if abs(body.velocity.y) > abs(body.velocity.x * 2):
+			timer.start()
+			can_combine = false
 			call_deferred("set_single")
-			var obj = object.instance()
-			obj.position = position + Vector2(10,0)
-			obj.velocity = obj.speed * get_random_vector()
+			obj.position = position + Vector2(0,80)
 			obj.call_deferred("set_single")
-			get_parent().add_child(obj)
 			emit_signal("double_was_broken")
-			print("horz to sing")
+			get_parent().call_deferred("add_child", obj)
 	elif is_doublev:
 		if abs(body.velocity.x) > abs(body.velocity.y * 2):
+			timer.start()
+			can_combine = false
 			call_deferred("set_single")
-			var obj = object.instance()
-			obj.position = position + Vector2(0,10)
-			obj.velocity = -1 * velocity
+			obj.position = position + Vector2(80,0)
 			obj.call_deferred("set_single")
-			get_parent().add_child(obj)
 			emit_signal("double_was_broken")
-			print("vert to sing")
+			get_parent().call_deferred("add_child", obj)
 	elif is_quad:
+		timer.start()
+		can_combine = false
 		if abs(body.velocity.x) > abs(body.velocity.y):
 			call_deferred("set_double_h")
-			var obj = object.instance()
-			obj.position = position + Vector2(0,10)
-			obj.velocity = -1 * velocity
+			obj.position = position + Vector2(0,80)
 			obj.call_deferred("set_double_h")
-			get_parent().add_child(obj)
-			print("quad to vert")
 		else:
 			call_deferred("set_double_v")
-			var obj = object.instance()
-			obj.position = position + Vector2(10,0)
-			obj.velocity = -1 * velocity
+			obj.position = position + Vector2(80,0)
 			obj.call_deferred("set_double_v")
-			get_parent().add_child(obj)
-			print("quad to horz")
 		emit_signal("quad_was_broken")
+		get_parent().call_deferred("add_child", obj)
+	
+	obj.velocity = -1 * velocity
+	if (velocity.dot(obj.velocity) < 0):
+		var temp = obj.velocity
+		obj.velocity = velocity 
+		velocity = temp
+
 
 func get_random_vector():
 	var angle = rand_range(PI/(3*2), PI/3)
@@ -137,10 +140,6 @@ func get_random_vector():
 		y_negation = -1
 	
 	return Vector2(cos(angle) * x_negation, sin(angle) * y_negation).normalized()
-
-func _on_SplitBox_body_exited(body):
-	if body.dashing:
-		split(body)
 
 
 func set_single_sprite(_tex):
@@ -170,25 +169,25 @@ func all_off():
 	$Quad/QuadSprite3.visible = false
 	$Quad/QuadSprite4.visible = false
 	
-	$SingleCollider.disabled = true
-	$DoubleHCollider.disabled = true
-	$DoubleVCollider.disabled = true
-	$QuadCollider.disabled = true
+	$SingleCollider.set_deferred("disabled", true)
+	$DoubleHCollider.set_deferred("disabled", true)
+	$DoubleVCollider.set_deferred("disabled", true)
+	$QuadCollider.set_deferred("disabled", true)
 	
 	is_single = false
 	is_doublev = false
 	is_doubleh = false
 	is_quad = false
 	
-	$SplitBox/DoubleH.disabled = true
-	$SplitBox/DoubleV.disabled = true
-	$SplitBox/Quad.disabled = true
+	$SplitBox/DoubleH.set_deferred("disabled", true)
+	$SplitBox/DoubleV.set_deferred("disabled", true)
+	$SplitBox/Quad.set_deferred("disabled", true)
 
 func set_single():
 	all_off()
 	flag = 1
 	$Single/SingleSprite.visible = true
-	$SingleCollider.disabled = false
+	$SingleCollider.set_deferred("disabled", false)
 	is_single = true
 
 func set_double_h():
@@ -196,18 +195,18 @@ func set_double_h():
 	flag = 2
 	$DoubleH/DoubleHSprite1.visible = true
 	$DoubleH/DoubleHSprite2.visible = true
-	$DoubleHCollider.disabled = false
+	$DoubleHCollider.set_deferred("disabled", false)
 	is_doubleh = true
-	$SplitBox/DoubleH.disabled = false
+	$SplitBox/DoubleH.set_deferred("disabled", false)
 
 func set_double_v():
 	all_off()
 	flag = 2
 	$DoubleV/DoubleVSprite1.visible = true
 	$DoubleV/DoubleVSprite2.visible = true
-	$DoubleVCollider.disabled = false
+	$DoubleVCollider.set_deferred("disabled", false)
 	is_doublev = true
-	$SplitBox/DoubleV.disabled = false
+	$SplitBox/DoubleV.set_deferred("disabled", false)
 
 func set_quad():
 	all_off()
@@ -217,7 +216,21 @@ func set_quad():
 	$Quad/QuadSprite2.visible = true
 	$Quad/QuadSprite3.visible = true
 	$Quad/QuadSprite4.visible = true
-	$QuadCollider.disabled = false
+	$QuadCollider.set_deferred("disabled", false)
 	is_quad = true
-	$SplitBox/Quad.disabled = false
+	$SplitBox/Quad.set_deferred("disabled", false)
 
+
+
+func _on_SplitBox_body_entered(body):
+	if body.dashing:
+		split(body)
+
+
+func _on_DivideTimer_timeout():
+	can_combine = true
+
+
+func _on_SplitBox_body_exited(body):
+	if body.dashing:
+		split(body)

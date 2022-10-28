@@ -21,18 +21,24 @@ rect_scale = Vector2( 2, 2 )
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 margin_right = 63.0
 margin_bottom = 20.0
+focus_neighbour_top = NodePath("../ExitButton")
+focus_neighbour_bottom = NodePath("../OptionButton")
 text = "Start"
 
 [node name="OptionButton" type="Button" parent="VBoxContainer"]
 margin_top = 24.0
 margin_right = 63.0
 margin_bottom = 44.0
+focus_neighbour_top = NodePath("../StartButton")
+focus_neighbour_bottom = NodePath("../ExitButton")
 text = "Options"
 
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 margin_top = 48.0
 margin_right = 63.0
 margin_bottom = 68.0
+focus_neighbour_top = NodePath("../OptionButton")
+focus_neighbour_bottom = NodePath("../StartButton")
 text = "Exit"
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]

@@ -24,7 +24,7 @@ func _ready():
 
 func _process(delta):
 	update()
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_released("dash"):
 		try_dash()
 	set_input_vec()
 	set_input_dir()
@@ -37,7 +37,7 @@ func try_dash():
 		dash()
 
 func dash():
-	intended_speed = 2000
+	intended_speed = 3000
 	dashing = true
 	can_dash = false
 	set_collision_mask_bit(2, false)
@@ -59,18 +59,20 @@ func set_input_dir():
 		var y_input = Input.get_axis("move_up", "move_down")
 		
 		if abs(x_input) > 0.0:
-			dir.x = x_input
+			dir.x = lerp(dir.x, x_input, 0.4)
 		
 		if abs(y_input) > 0.0:
-			dir.y = y_input
+			dir.y = lerp(dir.y, y_input, 0.4)
 			
 		dir = dir.normalized()
 
 func _physics_process(delta):
 	if dashing:
-		velocity = dir.normalized() * lerp(speed, intended_speed, 0.8)
+		velocity = dir.normalized() * lerp(speed, intended_speed, 0.4)
+	elif not Input.is_action_pressed("dash"):
+		velocity = input_vec.normalized() * input_vec.length() * lerp(speed, intended_speed, 0.4)
 	else:
-		velocity = input_vec.normalized() * input_vec.length() * lerp(speed, intended_speed, 0.7)
+		velocity = Vector2.ZERO
 
 	move_and_slide(velocity)
 

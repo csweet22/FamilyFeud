@@ -75,6 +75,7 @@ custom_constants/separation = 40
 [node name="Restart" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
 margin_right = 240.0
 margin_bottom = 42.0
+focus_neighbour_bottom = NodePath("../Quit")
 custom_fonts/font = SubResource( 3 )
 text = "  RESTART  "
 
@@ -82,6 +83,7 @@ text = "  RESTART  "
 margin_top = 82.0
 margin_right = 240.0
 margin_bottom = 124.0
+focus_neighbour_top = NodePath("../Restart")
 custom_fonts/font = SubResource( 4 )
 text = "  QUIT  "
 
@@ -95,3 +97,4 @@ align = 1
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="ready" from="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_ready"]

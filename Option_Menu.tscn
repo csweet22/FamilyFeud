@@ -21,18 +21,24 @@ rect_scale = Vector2( 2, 2 )
 [node name="CheckButton" type="CheckButton" parent="VBoxContainer"]
 margin_right = 188.0
 margin_bottom = 40.0
+focus_neighbour_top = NodePath("../Back")
+focus_neighbour_bottom = NodePath("../CheckBox")
 text = "Enable -OPTION-"
 
 [node name="CheckBox" type="CheckBox" parent="VBoxContainer"]
 margin_top = 44.0
 margin_right = 188.0
 margin_bottom = 68.0
+focus_neighbour_top = NodePath("../CheckButton")
+focus_neighbour_bottom = NodePath("../Back")
 text = "-INSERT HERE-"
 
 [node name="Back" type="Button" parent="VBoxContainer"]
 margin_top = 72.0
 margin_right = 188.0
 margin_bottom = 92.0
+focus_neighbour_top = NodePath("../CheckBox")
+focus_neighbour_bottom = NodePath("../CheckButton")
 text = "Back"
 
 [connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_Back_pressed"]

@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	pass # Replace with function body.
+	$VBoxContainer/Back.grab_focus()
 
 
 func _on_Back_pressed():

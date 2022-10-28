@@ -5,23 +5,32 @@
 [ext_resource path="res://GameManager.tscn" type="PackedScene" id=3]
 
 [node name="Root" type="Node2D"]
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
 
-[node name="KinematicBody2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( 471, 276 )
-collision_mask = 6
-
-[node name="KinematicBody2D2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 796, 170 )
+[node name="KinematicBody2D8" parent="." instance=ExtResource( 1 )]
+position = Vector2( 836, 472 )
 collision_mask = 6
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 193, 289 )
+position = Vector2( 528, 289 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PoolVector2Array( 78, 576, 83, 22, 952, 31, 943, 576, 107, 576, 89, 646, 1073, 635, 1064, -160, -108, -153, -16, 623 )
+polygon = PoolVector2Array( 20, 569, 18, 16, 1005, 18, 1001, 581, 33, 583, -469, 934, 1574, 1044, 1505, -486, -514, -609, -555, 880 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 103, 67 )
+scale = Vector2( 0.620192, 0.77621 )
+polygon = PoolVector2Array( 320, 230, 316, 385, 348, 381, 350.576, 281.412, 355, 233 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 452, 70 )
+scale = Vector2( 0.8125, 0.784274 )
+polygon = PoolVector2Array( 320, 230, 317.861, 312.868, 316, 385, 348, 381, 355, 233 )
 
 [node name="GameManager" parent="." groups=["GameManager"] instance=ExtResource( 3 )]
