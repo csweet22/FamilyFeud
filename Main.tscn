@@ -1,22 +1,23 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://advanced_pixel-7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GameManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Main.gd" type="Script" id=4]
 [ext_resource path="res://UIArt/Buttons.png" type="Texture" id=5]
-[ext_resource path="res://RoomArt/gameboard.png" type="Texture" id=6]
+[ext_resource path="res://gameboard_no_couch.png" type="Texture" id=6]
+[ext_resource path="res://ObjectArt/spritesheet.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 41
 outline_color = Color( 0.109804, 0.105882, 0.188235, 1 )
 font_data = ExtResource( 1 )
 
-[node name="Root" type="Node2D"]
+[sub_resource type="StreamTexture" id=2]
+load_path = "res://.import/spritesheet.png-082752e0edc2ed125895ca0dabcde686.stex"
+
+[node name="Root" type="YSort"]
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_vertical_guides_": [  ]
-}
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 528, 289 )
@@ -27,17 +28,17 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2( -1, 95 )
-polygon = PoolVector2Array( 18, 475, 18, 16, 1005, 15, 1005, 478, 16, 481, -469, 934, 1574, 1044, 1505, -486, -514, -609, -555, 880 )
+polygon = PoolVector2Array( 48, 458, 49, 27, 976, 28, 976, 461, 44, 461, -469, 934, 1574, 1044, 1505, -486, -514, -609, -555, 880, 12.4347, 482.89 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2( 103, 67 )
+position = Vector2( 118, 57 )
 scale = Vector2( 0.620192, 0.77621 )
 polygon = PoolVector2Array( 138.667, 262.815, 138.667, 452.197, 248.31, 452.197, 246.698, 261.527 )
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2( 452, 70 )
+position = Vector2( 435, 70 )
 scale = Vector2( 0.8125, 0.784274 )
-polygon = PoolVector2Array( 388.923, 244.812, 387.692, 448.823, 468.923, 451.373, 465.231, 243.537 )
+polygon = PoolVector2Array( 388.923, 252.463, 387.692, 448.823, 465.231, 450.098, 464, 252.463 )
 
 [node name="GameManager" parent="." groups=["GameManager"] instance=ExtResource( 3 )]
 good_color_fg = Color( 0.270588, 0.929412, 0.270588, 1 )
@@ -124,11 +125,27 @@ margin_bottom = 582.0
 custom_fonts/font = SubResource( 1 )
 text = "DASH"
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="BG" type="Sprite" parent="."]
 position = Vector2( 511.278, 294.375 )
-scale = Vector2( 4.24769, 4.23148 )
+scale = Vector2( 4, 4 )
 z_index = -40
 texture = ExtResource( 6 )
+
+[node name="Couch" type="Sprite" parent="."]
+position = Vector2( 781, 325 )
+scale = Vector2( 4, 4 )
+texture = SubResource( 2 )
+region_enabled = true
+region_rect = Rect2( 32, 29, 16, 48 )
+
+[node name="Bar" type="Sprite" parent="."]
+position = Vector2( 239, 323 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 14, 34, 16, 43 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 

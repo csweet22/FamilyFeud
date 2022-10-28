@@ -27,6 +27,7 @@ signal double_was_broken
 var gmaSheet = preload("res://ObjectArt/GrandmaSheet.tres")
 var woman1Sheet = preload("res://ObjectArt/Woman1Sheet.tres")
 var man1Sheet = preload("res://ObjectArt/Man1Sheet.tres")
+var pinkSheet = preload("res://ObjectArt/PinkSheet.tres")
 
 func spawnVFX():
 	$CPUParticles2D.restart()
@@ -49,17 +50,17 @@ func _ready():
 	self.connect("object_became_quad", gm, "_object_became_quad")
 
 func set_random_sprite():
-	var temp = rand_range(0,3)
+	var temp = rand_range(0,4)
 	
 	if (temp < 1) and (temp > 0):
 		$Single/SingleSprite.frames = gmaSheet
-		print($Single/SingleSprite.frames)
 	elif (temp > 1) and (temp < 2):
 		$Single/SingleSprite.frames = woman1Sheet
-		print($Single/SingleSprite.frames)
 	elif (temp > 2) and (temp < 3):
 		$Single/SingleSprite.frames = man1Sheet
-		print($Single/SingleSprite.frames)
+	elif (temp > 3) and (temp < 4):
+		$Single/SingleSprite.frames = pinkSheet
+	
 	
 
 func _process(delta):
