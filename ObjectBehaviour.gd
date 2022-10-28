@@ -24,9 +24,9 @@ signal object_became_quad
 signal quad_was_broken
 signal double_was_broken
 
-onready var gmaSheet = load("res://ObjectArt/GrandmaSheet.tres")
-onready var woman1Sheet = load("res://ObjectArt/Woman1Sheet.tres")
-onready var man1Sheet = load("res://ObjectArt/man1Sheet.tres")
+var gmaSheet = preload("res://ObjectArt/GrandmaSheet.tres")
+var woman1Sheet = preload("res://ObjectArt/Woman1Sheet.tres")
+var man1Sheet = preload("res://ObjectArt/Man1Sheet.tres")
 
 func spawnVFX():
 	$CPUParticles2D.restart()
@@ -35,15 +35,6 @@ func _ready():
 	id = Singleton.obj_id
 	Singleton.obj_id += 1
 	all_off()
-	
-	var temp = rand_range(0,3)
-	
-	if (temp < 1) and (temp > 0):
-		$Single/SingleSprite.frames = gmaSheet
-	elif (temp > 1) and (temp < 2):
-		$Single/SingleSprite.frames = woman1Sheet
-	elif (temp > 2) and (temp < 3):
-		$Single/SingleSprite.frames = man1Sheet
 	
 	
 	var children = get_parent().get_children()
@@ -56,6 +47,20 @@ func _ready():
 	self.connect("double_was_broken", gm, "_on_KinematicBody2D_double_was_broken")
 	self.connect("quad_was_broken", gm, "_quad_was_broken")
 	self.connect("object_became_quad", gm, "_object_became_quad")
+
+func set_random_sprite():
+	var temp = rand_range(0,3)
+	
+	if (temp < 1) and (temp > 0):
+		$Single/SingleSprite.frames = gmaSheet
+		print($Single/SingleSprite.frames)
+	elif (temp > 1) and (temp < 2):
+		$Single/SingleSprite.frames = woman1Sheet
+		print($Single/SingleSprite.frames)
+	elif (temp > 2) and (temp < 3):
+		$Single/SingleSprite.frames = man1Sheet
+		print($Single/SingleSprite.frames)
+	
 
 func _process(delta):
 	set_animation()
@@ -138,6 +143,8 @@ func split(body):
 			print("horz to sing")
 			emit_signal("double_was_broken")
 			get_parent().add_child(obj)
+			obj.set_single_sprite(get_double_sprite()[0])
+			set_single_sprite(get_double_sprite()[1])
 			newPointUI.init("100")
 			get_parent().add_child(newPointUI)
 			vfx.position = position
@@ -152,6 +159,8 @@ func split(body):
 			emit_signal("double_was_broken")
 			print("vert to sing")
 			get_parent().add_child(obj)
+			obj.set_single_sprite(get_double_sprite()[0])
+			set_single_sprite(get_double_sprite()[1])
 			newPointUI.init("100")
 			get_parent().add_child(newPointUI)
 			vfx.position = position
@@ -169,6 +178,9 @@ func split(body):
 			obj.position = position + Vector2(80,0)
 			obj.call_deferred("set_double_v")
 			print("quad to vert")
+		
+		obj.set_double_sprite(get_quad_sprite()[0], get_quad_sprite()[1])
+		set_double_sprite(get_quad_sprite()[2], get_quad_sprite()[3])
 		emit_signal("quad_was_broken")
 		get_parent().add_child(obj)
 		

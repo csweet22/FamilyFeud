@@ -19,7 +19,6 @@ func _on_counter_timeout():
 	pass
 
 func _process(delta):
-	print($ProgressBar/ProgressTime.wait_time)
 	$Score.set_text("SCORE:" + str(Singleton.score))
 	score_multipliers()
 	timer_multipliers()

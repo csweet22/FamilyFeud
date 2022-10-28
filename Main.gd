@@ -25,10 +25,11 @@ func _process(delta):
 
 
 func _on_StartTimer_timeout():
+	
 	for child in $SpawnPoints.get_children():
 		if child.is_in_group("SpawnPoint"):
-			print("trying to make one")
 			var obj = object.instance()
+			obj.set_random_sprite()
 			obj.call_deferred("set_single")
 			obj.position = child.position
 			obj.spawnVFX()
