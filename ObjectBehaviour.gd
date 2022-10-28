@@ -24,6 +24,10 @@ signal object_became_quad
 signal quad_was_broken
 signal double_was_broken
 
+onready var gmaSheet = load("res://ObjectArt/GrandmaSheet.tres")
+onready var woman1Sheet = load("res://ObjectArt/Woman1Sheet.tres")
+onready var man1Sheet = load("res://ObjectArt/man1Sheet.tres")
+
 func spawnVFX():
 	$CPUParticles2D.restart()
 
@@ -31,6 +35,16 @@ func _ready():
 	id = Singleton.obj_id
 	Singleton.obj_id += 1
 	all_off()
+	
+	var temp = rand_range(0,3)
+	
+	if (temp < 1) and (temp > 0):
+		$Single/SingleSprite.frames = gmaSheet
+	elif (temp > 1) and (temp < 2):
+		$Single/SingleSprite.frames = woman1Sheet
+	elif (temp > 2) and (temp < 3):
+		$Single/SingleSprite.frames = man1Sheet
+	
 	
 	var children = get_parent().get_children()
 	
@@ -44,6 +58,7 @@ func _ready():
 	self.connect("object_became_quad", gm, "_object_became_quad")
 
 func _process(delta):
+	set_animation()
 	if Input.is_key_pressed(KEY_1):
 		set_single()
 	if Input.is_key_pressed(KEY_2):
@@ -52,6 +67,21 @@ func _process(delta):
 		set_double_v()
 	if Input.is_key_pressed(KEY_4):
 		set_quad()
+
+
+func set_animation():
+	if velocity.x > 0:
+		if is_single:
+			set_single_sprite_anim("right")
+		else:
+			set_double_sprite_anim("argue_right", "argue_left")
+			set_quad_sprite_anim("argue_right", "argue_left", "argue_right", "argue_left")
+	else:
+		if is_single:
+			set_single_sprite_anim("left")
+		else:
+			set_double_sprite_anim("argue_left", "argue_right")
+			set_quad_sprite_anim("argue_left", "argue_right", "argue_left", "argue_right")
 
 func _physics_process(delta):
 	velocity = velocity * Singleton.enemy_difficulty
@@ -82,10 +112,13 @@ func combine(obj2, collision: KinematicCollision2D):
 		if flag == 1:
 			if abs((collision.position - position).x) > abs((collision.position - position).y):
 				call_deferred("set_double_h")
+				set_double_sprite($Single/SingleSprite.frames, obj2.get_single_sprite())
 			else:
 				call_deferred("set_double_v")
+				set_double_sprite($Single/SingleSprite.frames, obj2.get_single_sprite())
 		elif flag == 2:
 			call_deferred("set_quad")
+			set_quad_sprite(get_double_sprite()[0],get_double_sprite()[1], obj2.get_double_sprite()[0], obj2.get_double_sprite()[1])
 		obj2.queue_free()
 
 func split(body):
@@ -171,19 +204,43 @@ func get_random_vector():
 
 
 func set_single_sprite(_tex):
-	$Single/SingleSprite.texture = _tex
+	$Single/SingleSprite.frames = _tex
 
 func set_double_sprite(_tex1, _tex2):
-	$DoubleH/DoubleHSprite1.texture = _tex1
-	$DoubleH/DoubleHSprite2.texture = _tex2
-	$DoubleV/DoubleVSprite1.texture = _tex1
-	$DoubleV/DoubleVSprite2.texture = _tex2
+	$DoubleH/DoubleHSprite1.frames = _tex1
+	$DoubleH/DoubleHSprite2.frames = _tex2
+	$DoubleV/DoubleVSprite1.frames = _tex1
+	$DoubleV/DoubleVSprite2.frames = _tex2
 
 func set_quad_sprite(_tex1, _tex2, _tex3, _tex4):
-	$Quad/QuadSprite1.texture = _tex1
-	$Quad/QuadSprite2.texture = _tex2
-	$Quad/QuadSprite3.texture = _tex3
-	$Quad/QuadSprite4.texture = _tex4
+	$Quad/QuadSprite1.frames = _tex1
+	$Quad/QuadSprite2.frames = _tex2
+	$Quad/QuadSprite3.frames = _tex3
+	$Quad/QuadSprite4.frames = _tex4
+
+func get_single_sprite():
+	return $Single/SingleSprite.frames
+
+func get_double_sprite():
+	return [$DoubleH/DoubleHSprite1.frames, $DoubleH/DoubleHSprite2.frames]
+
+func get_quad_sprite():
+	return [$Quad/QuadSprite1.frames, $Quad/QuadSprite2.frames, $Quad/QuadSprite3.frames, $Quad/QuadSprite4.frames]
+
+func set_single_sprite_anim(_tex):
+	$Single/SingleSprite.animation = _tex
+
+func set_double_sprite_anim(_tex1, _tex2):
+	$DoubleH/DoubleHSprite1.animation = _tex1
+	$DoubleH/DoubleHSprite2.animation = _tex2
+	$DoubleV/DoubleVSprite1.animation = _tex1
+	$DoubleV/DoubleVSprite2.animation = _tex2
+
+func set_quad_sprite_anim(_tex1, _tex2, _tex3, _tex4):
+	$Quad/QuadSprite1.animation = _tex1
+	$Quad/QuadSprite2.animation = _tex2
+	$Quad/QuadSprite3.animation = _tex3
+	$Quad/QuadSprite4.animation = _tex4
 
 func all_off():
 	flag = 0

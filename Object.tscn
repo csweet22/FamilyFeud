@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ObjectBehaviour.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=7]
 radius = 32.0
@@ -34,47 +33,55 @@ script = ExtResource( 1 )
 
 [node name="Single" type="Node2D" parent="."]
 
-[node name="SingleSprite" type="Sprite" parent="Single"]
-texture = ExtResource( 2 )
+[node name="SingleSprite" type="AnimatedSprite" parent="Single"]
+scale = Vector2( 4, 4 )
+playing = true
 
 [node name="DoubleH" type="Node2D" parent="."]
 
-[node name="DoubleHSprite1" type="Sprite" parent="DoubleH"]
+[node name="DoubleHSprite1" type="AnimatedSprite" parent="DoubleH"]
 position = Vector2( 32, 0 )
-texture = ExtResource( 2 )
+scale = Vector2( 4, 4 )
+playing = true
 
-[node name="DoubleHSprite2" type="Sprite" parent="DoubleH"]
+[node name="DoubleHSprite2" type="AnimatedSprite" parent="DoubleH"]
 position = Vector2( -32, 0 )
-texture = ExtResource( 2 )
+scale = Vector2( 4, 4 )
+playing = true
 
 [node name="DoubleV" type="Node2D" parent="."]
 
-[node name="DoubleVSprite1" type="Sprite" parent="DoubleV"]
+[node name="DoubleVSprite1" type="AnimatedSprite" parent="DoubleV"]
 position = Vector2( 0, 32 )
-texture = ExtResource( 2 )
-normal_map = ExtResource( 2 )
+scale = Vector2( 4, 4 )
+playing = true
 
-[node name="DoubleVSprite2" type="Sprite" parent="DoubleV"]
+[node name="DoubleVSprite2" type="AnimatedSprite" parent="DoubleV"]
 position = Vector2( 0, -32 )
-texture = ExtResource( 2 )
+scale = Vector2( 4, 4 )
+playing = true
 
 [node name="Quad" type="Node2D" parent="."]
 
-[node name="QuadSprite1" type="Sprite" parent="Quad"]
+[node name="QuadSprite1" type="AnimatedSprite" parent="Quad"]
 position = Vector2( 32, 32 )
-texture = ExtResource( 2 )
+scale = Vector2( 4, 4 )
+playing = true
 
-[node name="QuadSprite2" type="Sprite" parent="Quad"]
+[node name="QuadSprite2" type="AnimatedSprite" parent="Quad"]
 position = Vector2( 32, -32 )
-texture = ExtResource( 2 )
+scale = Vector2( 4, 4 )
+playing = true
 
-[node name="QuadSprite3" type="Sprite" parent="Quad"]
+[node name="QuadSprite3" type="AnimatedSprite" parent="Quad"]
 position = Vector2( -32, -32 )
-texture = ExtResource( 2 )
+scale = Vector2( 4, 4 )
+playing = true
 
-[node name="QuadSprite4" type="Sprite" parent="Quad"]
+[node name="QuadSprite4" type="AnimatedSprite" parent="Quad"]
 position = Vector2( -32, 32 )
-texture = ExtResource( 2 )
+scale = Vector2( 4, 4 )
+playing = true
 
 [node name="SingleCollider" type="CollisionShape2D" parent="."]
 visible = false
