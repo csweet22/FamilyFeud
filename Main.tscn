@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://advanced_pixel-7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GameManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Main.gd" type="Script" id=4]
 [ext_resource path="res://UIArt/Buttons.png" type="Texture" id=5]
+[ext_resource path="res://RoomArt/gameboard.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 41
@@ -25,17 +26,18 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PoolVector2Array( 20, 569, 18, 16, 1005, 18, 1001, 581, 33, 583, -469, 934, 1574, 1044, 1505, -486, -514, -609, -555, 880 )
+position = Vector2( -1, 95 )
+polygon = PoolVector2Array( 18, 475, 18, 16, 1005, 15, 1005, 478, 16, 481, -469, 934, 1574, 1044, 1505, -486, -514, -609, -555, 880 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2( 103, 67 )
 scale = Vector2( 0.620192, 0.77621 )
-polygon = PoolVector2Array( 320, 230, 316, 385, 348, 381, 350.576, 281.412, 355, 233 )
+polygon = PoolVector2Array( 137.054, 217.725, 138.667, 452.197, 248.31, 452.197, 248.31, 219.013 )
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2( 452, 70 )
 scale = Vector2( 0.8125, 0.784274 )
-polygon = PoolVector2Array( 320, 230, 317.861, 312.868, 316, 385, 348, 381, 355, 233 )
+polygon = PoolVector2Array( 387.692, 215.486, 387.692, 448.823, 468.923, 451.373, 464, 215.486 )
 
 [node name="GameManager" parent="." groups=["GameManager"] instance=ExtResource( 3 )]
 good_color_fg = Color( 0.270588, 0.929412, 0.270588, 1 )
@@ -72,50 +74,6 @@ position = Vector2( 685, 512 )
 
 [node name="Spawn8" type="Node2D" parent="SpawnPoints" groups=["SpawnPoint"]]
 position = Vector2( 897, 476 )
-
-[node name="ColorRect" type="Node2D" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="ColorRect"]
-margin_left = -16.0
-margin_top = -27.0
-margin_right = 1096.0
-margin_bottom = 16.0
-color = Color( 0.227451, 0.286275, 0.411765, 1 )
-
-[node name="ColorRect3" type="ColorRect" parent="ColorRect"]
-margin_left = -291.0
-margin_top = 12.0
-margin_right = 19.0
-margin_bottom = 608.0
-color = Color( 0.227451, 0.286275, 0.411765, 1 )
-
-[node name="ColorRect4" type="ColorRect" parent="ColorRect"]
-margin_left = 998.0
-margin_top = 2.0
-margin_right = 1308.0
-margin_bottom = 598.0
-color = Color( 0.227451, 0.286275, 0.411765, 1 )
-
-[node name="ColorRect5" type="ColorRect" parent="ColorRect"]
-margin_left = 709.0
-margin_top = 248.0
-margin_right = 741.0
-margin_bottom = 376.0
-color = Color( 0.227451, 0.286275, 0.411765, 1 )
-
-[node name="ColorRect6" type="ColorRect" parent="ColorRect"]
-margin_left = 301.0
-margin_top = 243.0
-margin_right = 324.0
-margin_bottom = 365.0
-color = Color( 0.227451, 0.286275, 0.411765, 1 )
-
-[node name="ColorRect2" type="ColorRect" parent="ColorRect"]
-margin_left = -39.0
-margin_top = 581.0
-margin_right = 1073.0
-margin_bottom = 624.0
-color = Color( 0.227451, 0.286275, 0.411765, 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 20
@@ -159,5 +117,11 @@ margin_right = 912.0
 margin_bottom = 582.0
 custom_fonts/font = SubResource( 1 )
 text = "DASH"
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 511.278, 294.375 )
+scale = Vector2( 4.24769, 4.23148 )
+z_index = -40
+texture = ExtResource( 6 )
 
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]

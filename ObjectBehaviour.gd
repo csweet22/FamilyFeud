@@ -24,6 +24,9 @@ signal object_became_quad
 signal quad_was_broken
 signal double_was_broken
 
+func spawnVFX():
+	$CPUParticles2D.restart()
+
 func _ready():
 	id = Singleton.obj_id
 	Singleton.obj_id += 1

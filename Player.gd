@@ -74,6 +74,11 @@ func _physics_process(delta):
 	else:
 		velocity = Vector2.ZERO
 
+	if velocity.length() > 0.1:
+		$CPUParticles2D.emitting = true
+	else:
+		$CPUParticles2D.emitting = false
+		
 	move_and_slide(velocity)
 
 

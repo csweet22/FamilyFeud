@@ -31,4 +31,5 @@ func _on_StartTimer_timeout():
 			var obj = object.instance()
 			obj.call_deferred("set_single")
 			obj.position = child.position
+			obj.spawnVFX()
 			add_child(obj)
