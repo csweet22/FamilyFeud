@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 var object = load("res://Object.tscn")
 var pointUI = load("res://PointsUpUI.tscn")
+var splitVFX = load("res://SplitVFX.tscn")
 
 onready var timer := $DivideTimer
 
@@ -86,8 +87,8 @@ func combine(obj2, collision: KinematicCollision2D):
 
 func split(body):
 	
-	
 	var obj = object.instance()
+	var vfx = splitVFX.instance()
 	
 	var newPointUI = pointUI.instance()
 	newPointUI.position = position
@@ -103,6 +104,8 @@ func split(body):
 			get_parent().add_child(obj)
 			newPointUI.init("100")
 			get_parent().add_child(newPointUI)
+			vfx.position = position
+			get_parent().add_child(vfx)
 	elif is_doublev:
 		if abs(body.velocity.x) > abs(body.velocity.y * 2):
 			timer.start()
@@ -115,6 +118,8 @@ func split(body):
 			get_parent().add_child(obj)
 			newPointUI.init("100")
 			get_parent().add_child(newPointUI)
+			vfx.position = position
+			get_parent().add_child(vfx)
 	elif is_quad:
 		timer.start()
 		can_combine = false
@@ -132,6 +137,8 @@ func split(body):
 		get_parent().add_child(obj)
 		
 		
+		vfx.position = position
+		get_parent().add_child(vfx)
 		newPointUI.init("600")
 		get_parent().add_child(newPointUI)
 	

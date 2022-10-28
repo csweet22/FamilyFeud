@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://SplitVFX.gd" type="Script" id=1]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0.00732601, 1 ), 0.0, -2.67964, 0, 0, Vector2( 0.992674, 0 ), 0.14695, 0.0, 0, 0 ]
+
+[node name="SplitVFX" type="CPUParticles2D"]
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.19
+local_coords = false
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 312.49
+orbit_velocity = 0.1
+orbit_velocity_random = 1.0
+damping = 600.0
+angle = 720.0
+angle_random = 1.0
+scale_amount = 23.81
+scale_amount_random = 0.73
+scale_amount_curve = SubResource( 1 )
+color = Color( 0.8, 0.937255, 0.964706, 0.92549 )
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
