@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 var object = load("res://Object.tscn")
+var pointUI = load("res://PointsUpUI.tscn")
 
 onready var timer := $DivideTimer
 
@@ -84,6 +85,9 @@ func split(body):
 	
 	
 	var obj = object.instance()
+	
+	var newPointUI = pointUI.instance()
+	newPointUI.position = position
 	if is_doubleh:
 		if abs(body.velocity.y) > abs(body.velocity.x * 2):
 			timer.start()
@@ -94,6 +98,8 @@ func split(body):
 			print("horz to sing")
 			emit_signal("double_was_broken")
 			get_parent().add_child(obj)
+			newPointUI.init("100")
+			get_parent().add_child(newPointUI)
 	elif is_doublev:
 		if abs(body.velocity.x) > abs(body.velocity.y * 2):
 			timer.start()
@@ -104,6 +110,8 @@ func split(body):
 			emit_signal("double_was_broken")
 			print("vert to sing")
 			get_parent().add_child(obj)
+			newPointUI.init("100")
+			get_parent().add_child(newPointUI)
 	elif is_quad:
 		timer.start()
 		can_combine = false
@@ -119,6 +127,10 @@ func split(body):
 			print("quad to vert")
 		emit_signal("quad_was_broken")
 		get_parent().add_child(obj)
+		
+		
+		newPointUI.init("100")
+		get_parent().add_child(newPointUI)
 	
 	obj.velocity = -1 * velocity
 	if (velocity.dot(obj.velocity) < 0):

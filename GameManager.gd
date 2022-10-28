@@ -3,6 +3,11 @@ extends Node
 onready var fg_col: StyleBoxFlat = $ProgressBar.get_stylebox("fg")
 onready var bg_col: StyleBoxFlat = $ProgressBar.get_stylebox("bg")
 
+export(Color) var good_color_fg = Color(0,1,0)
+export(Color) var bad_color_fg = Color(1,0,0)
+export(Color) var good_color_bg = Color(0,1,0)
+export(Color) var bad_color_bg = Color(1,0,0)
+
 var quads_alive = 0
 
 var s = 0
@@ -17,7 +22,13 @@ func _process(delta):
 	$Score.set_text("SCORE:" + str(Singleton.score))
 	score_multipliers()
 	$ProgressBar.value = ($ProgressBar/ProgressTime.time_left / $ProgressBar/ProgressTime.wait_time)*100
-		
+	fg_col.bg_color.r = lerp(good_color_fg.r, bad_color_fg.r, (1-$ProgressBar.value/100) + 0.2)
+	fg_col.bg_color.g = lerp(good_color_fg.g, bad_color_fg.g, (1-$ProgressBar.value/100) + 0.2)
+	fg_col.bg_color.b = lerp(good_color_fg.b, bad_color_fg.b, (1-$ProgressBar.value/100) + 0.2)
+	bg_col.bg_color.r = lerp(good_color_bg.r, bad_color_bg.r, (1-$ProgressBar.value/100) + 0.2)
+	bg_col.bg_color.g = lerp(good_color_bg.g, bad_color_bg.g, (1-$ProgressBar.value/100) + 0.2)
+	bg_col.bg_color.b = lerp(good_color_bg.b, bad_color_bg.b, (1-$ProgressBar.value/100) + 0.2)
+
 
 func score_multipliers():
 	if s >= 0 and s <180:
