@@ -53,7 +53,6 @@ func _physics_process(delta):
 	velocity = velocity * Singleton.enemy_difficulty
 	if velocity.length() > 300:
 		velocity = velocity.normalized() * 300
-	print(velocity.length())
 	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
 	
 	if collision:
@@ -133,7 +132,7 @@ func split(body):
 		get_parent().add_child(obj)
 		
 		
-		newPointUI.init("100")
+		newPointUI.init("600")
 		get_parent().add_child(newPointUI)
 	
 	obj.velocity = -1 * velocity

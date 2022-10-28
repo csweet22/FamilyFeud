@@ -14,13 +14,15 @@ var s = 0
 var prog_time = 0
 func _on_counter_timeout():
 	#score += ms
-	s+=1
-	Singleton.score+=1
+	s+=10
+	Singleton.score+=10
 	pass
 
 func _process(delta):
+	print($ProgressBar/ProgressTime.wait_time)
 	$Score.set_text("SCORE:" + str(Singleton.score))
 	score_multipliers()
+	timer_multipliers()
 	$ProgressBar.value = ($ProgressBar/ProgressTime.time_left / $ProgressBar/ProgressTime.wait_time)*100
 	fg_col.bg_color.r = lerp(good_color_fg.r, bad_color_fg.r, (1-$ProgressBar.value/100) + 0.2)
 	fg_col.bg_color.g = lerp(good_color_fg.g, bad_color_fg.g, (1-$ProgressBar.value/100) + 0.2)
@@ -31,14 +33,21 @@ func _process(delta):
 	
 	Singleton.enemy_difficulty += delta/100000
 
+func timer_multipliers():
+	if Singleton.score < 1000:
+		$ProgressBar/ProgressTime.wait_time = 6
+	elif Singleton.score > 1000 and Singleton.score < 5000:
+		$ProgressBar/ProgressTime.wait_time = 4
+	elif Singleton.score > 5000:
+		$ProgressBar/ProgressTime.wait_time = 2.8
 
 func score_multipliers():
-	if s >= 0 and s <180:
-		$Score/counter.wait_time = 1
-	if s > 180:
-		$Score/counter.wait_time = 0.75   #Can add more and vary values after seeing gameplay
-	elif s > 300:
-		$Score/counter.wait_time = 0.5
+	if s >= 0 and s <1000:
+		$Score/counter.wait_time = .5
+	if s > 1000:
+		$Score/counter.wait_time = .75   #Can add more and vary values after seeing gameplay
+	elif s > 2000:
+		$Score/counter.wait_time = 1.25
 	
 	
 func _on_KinematicBody2D_double_was_broken():

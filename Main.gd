@@ -16,14 +16,12 @@ func _get_property_list():
 		type = TYPE_INT
 	})
 	return properties
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+
+func _process(delta):
+	if Input.is_key_pressed(KEY_R):
+		get_tree().change_scene("res://Main_Menu.tscn")
 
 
 func _on_StartTimer_timeout():
