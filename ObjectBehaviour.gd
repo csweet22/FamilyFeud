@@ -124,6 +124,7 @@ func combine(obj2, collision: KinematicCollision2D):
 				set_double_sprite($Single/SingleSprite.frames, obj2.get_single_sprite())
 		elif flag == 2:
 			call_deferred("set_quad")
+			$Alert.play("mega_alert")
 			set_quad_sprite(get_double_sprite()[0],get_double_sprite()[1], obj2.get_double_sprite()[0], obj2.get_double_sprite()[1])
 		obj2.queue_free()
 
@@ -189,6 +190,8 @@ func split(body):
 		vfx.position = position
 		get_parent().add_child(vfx)
 		newPointUI.init("600")
+		$Alert.play("Alert")
+		obj.set_reg_alert()
 		get_parent().add_child(newPointUI)
 	
 	obj.velocity = -1 * velocity
@@ -197,6 +200,8 @@ func split(body):
 		obj.velocity = velocity 
 		velocity = temp
 
+func set_reg_alert():
+	$Alert.play("Alert")
 
 func get_random_vector():
 	var angle = rand_range(PI/(3*2), PI/3)
@@ -293,6 +298,7 @@ func set_single():
 	$Single/SingleDropShadow.visible = true
 	$SingleCollider.set_deferred("disabled", false)
 	is_single = true
+	$AlertSprite.visible = false
 
 func set_double_h():
 	all_off()
@@ -300,6 +306,7 @@ func set_double_h():
 	$DoubleH/DoubleHSprite1.visible = true
 	$DoubleH/DoubleHSprite2.visible = true
 	$DoubleH/DoubleHShadow.visible = true
+	$AlertSprite.visible = true
 	$DoubleHCollider.set_deferred("disabled", false)
 	is_doubleh = true
 	$SplitBox/DoubleH.set_deferred("disabled", false)
@@ -310,6 +317,7 @@ func set_double_v():
 	$DoubleV/DoubleVSprite1.visible = true
 	$DoubleV/DoubleVSprite2.visible = true
 	$DoubleV/DoubleVShadow.visible = true
+	$AlertSprite.visible = true
 	$DoubleVCollider.set_deferred("disabled", false)
 	is_doublev = true
 	$SplitBox/DoubleV.set_deferred("disabled", false)
@@ -323,6 +331,7 @@ func set_quad():
 	$Quad/QuadSprite3.visible = true
 	$Quad/QuadSprite4.visible = true
 	$Quad/QuadShadow.visible = true
+	$AlertSprite.visible = true
 	$QuadCollider.set_deferred("disabled", false)
 	is_quad = true
 	$SplitBox/Quad.set_deferred("disabled", false)

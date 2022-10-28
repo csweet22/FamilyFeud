@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ObjectBehaviour.gd" type="Script" id=1]
 [ext_resource path="res://ObjectArt/DropShadows.png" type="Texture" id=2]
+[ext_resource path="res://ObjectArt/alert.png" type="Texture" id=3]
 
 [sub_resource type="CapsuleShape2D" id=17]
 height = 32.0
@@ -112,6 +113,77 @@ tracks/3/enabled = true
 tracks/3/keys = {
 "points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.5, 1 )
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "Alert"
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("AlertSprite:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 4, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("AlertSprite:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 4, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+
+[sub_resource type="Animation" id=20]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("AlertSprite:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 4, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("AlertSprite:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 4, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "mega_alert"
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("AlertSprite:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 5, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 0.6, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("AlertSprite:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 5, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0, 5, -0.25, 0, 0.25, 0, 6, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 0.6, 1 )
 }
 
 [node name="Object" type="KinematicBody2D"]
@@ -267,6 +339,18 @@ color = Color( 0.8, 0.937255, 0.964706, 0.92549 )
 autoplay = "move"
 anims/RESET = SubResource( 12 )
 anims/move = SubResource( 13 )
+
+[node name="AlertSprite" type="Sprite" parent="."]
+scale = Vector2( 4, 4 )
+z_index = 3
+texture = ExtResource( 3 )
+
+[node name="Alert" type="AnimationPlayer" parent="."]
+autoplay = "Alert"
+playback_speed = 2.0
+anims/Alert = SubResource( 19 )
+anims/RESET = SubResource( 20 )
+anims/mega_alert = SubResource( 21 )
 
 [connection signal="body_entered" from="SplitBox" to="." method="_on_SplitBox_body_entered"]
 [connection signal="body_exited" from="SplitBox" to="." method="_on_SplitBox_body_exited"]
