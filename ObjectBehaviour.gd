@@ -50,6 +50,10 @@ func _process(delta):
 		set_quad()
 
 func _physics_process(delta):
+	velocity = velocity * Singleton.enemy_difficulty
+	if velocity.length() > 300:
+		velocity = velocity.normalized() * 300
+	print(velocity.length())
 	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
 	
 	if collision:

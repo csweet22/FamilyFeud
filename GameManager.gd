@@ -28,6 +28,8 @@ func _process(delta):
 	bg_col.bg_color.r = lerp(good_color_bg.r, bad_color_bg.r, (1-$ProgressBar.value/100) + 0.2)
 	bg_col.bg_color.g = lerp(good_color_bg.g, bad_color_bg.g, (1-$ProgressBar.value/100) + 0.2)
 	bg_col.bg_color.b = lerp(good_color_bg.b, bad_color_bg.b, (1-$ProgressBar.value/100) + 0.2)
+	
+	Singleton.enemy_difficulty += delta/100000
 
 
 func score_multipliers():
