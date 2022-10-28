@@ -3,7 +3,7 @@
 [ext_resource path="res://ObjectBehaviour.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 32, 32 )
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -72,7 +72,7 @@ texture = ExtResource( 2 )
 
 [node name="SingleCollider" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 1 )
+shape = SubResource( 7 )
 
 [node name="DoubleVCollider" type="CollisionShape2D" parent="."]
 visible = false
@@ -98,7 +98,6 @@ shape = SubResource( 5 )
 shape = SubResource( 6 )
 
 [node name="Quad" type="CollisionPolygon2D" parent="SplitBox"]
-visible = false
 polygon = PoolVector2Array( -33, -72, 28, -72, 28, -26, 74, -27, 73, 36, 32, 35, 34, 71, -32, 72, -30, 37, -74, 39, -74, -30, -34, -30 )
 disabled = true
 

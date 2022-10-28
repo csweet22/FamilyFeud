@@ -24,6 +24,16 @@ func _ready():
 	Singleton.obj_id += 1
 	all_off()
 	set_single()
+	var children = get_parent().get_children()
+	
+	var gm
+	for child in children:
+		if child.is_in_group("GameManager"):
+			gm = child
+	
+	self.connect("double_was_broken", gm, "_on_KinematicBody2D_double_was_broken")
+	self.connect("quad_was_broken", gm, "_quad_was_broken")
+	self.connect("object_became_quad", gm, "_object_became_quad")
 
 func _process(delta):
 	if Input.is_key_pressed(KEY_1):
