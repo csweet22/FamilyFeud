@@ -32,12 +32,12 @@ polygon = PoolVector2Array( 18, 475, 18, 16, 1005, 15, 1005, 478, 16, 481, -469,
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2( 103, 67 )
 scale = Vector2( 0.620192, 0.77621 )
-polygon = PoolVector2Array( 137.054, 217.725, 138.667, 452.197, 248.31, 452.197, 248.31, 219.013 )
+polygon = PoolVector2Array( 138.667, 262.815, 138.667, 452.197, 248.31, 452.197, 246.698, 261.527 )
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2( 452, 70 )
 scale = Vector2( 0.8125, 0.784274 )
-polygon = PoolVector2Array( 387.692, 215.486, 387.692, 448.823, 468.923, 451.373, 464, 215.486 )
+polygon = PoolVector2Array( 388.923, 244.812, 387.692, 448.823, 468.923, 451.373, 465.231, 243.537 )
 
 [node name="GameManager" parent="." groups=["GameManager"] instance=ExtResource( 3 )]
 good_color_fg = Color( 0.270588, 0.929412, 0.270588, 1 )

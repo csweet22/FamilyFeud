@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ObjectBehaviour.gd" type="Script" id=1]
 
@@ -25,6 +25,73 @@ extents = Vector2( 36, 39 )
 
 [sub_resource type="Curve" id=11]
 _data = [ Vector2( 0.00732601, 1 ), 0.0, -2.67964, 0, 0, Vector2( 0.992674, 0 ), 0.14695, 0.0, 0, 0 ]
+
+[sub_resource type="Animation" id=12]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Quad:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Single/SingleSprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("DoubleV:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "move"
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Single/SingleSprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("DoubleV:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Quad:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, -3, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 1 )
+}
 
 [node name="Object" type="KinematicBody2D"]
 collision_layer = 4
@@ -65,6 +132,7 @@ z_index = -1
 playing = true
 
 [node name="Quad" type="Node2D" parent="."]
+rotation = -0.0523599
 
 [node name="QuadSprite1" type="AnimatedSprite" parent="Quad"]
 position = Vector2( 32, -50 )
@@ -139,6 +207,11 @@ scale_amount = 23.81
 scale_amount_random = 0.73
 scale_amount_curve = SubResource( 11 )
 color = Color( 0.8, 0.937255, 0.964706, 0.92549 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "move"
+anims/RESET = SubResource( 12 )
+anims/move = SubResource( 13 )
 
 [connection signal="body_entered" from="SplitBox" to="." method="_on_SplitBox_body_entered"]
 [connection signal="body_exited" from="SplitBox" to="." method="_on_SplitBox_body_exited"]
