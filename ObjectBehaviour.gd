@@ -26,7 +26,7 @@ func _ready():
 	id = Singleton.obj_id
 	Singleton.obj_id += 1
 	all_off()
-	set_single()
+	
 	var children = get_parent().get_children()
 	
 	var gm
@@ -49,7 +49,6 @@ func _process(delta):
 		set_quad()
 
 func _physics_process(delta):
-	print(can_combine)
 	var collision: KinematicCollision2D = move_and_collide(velocity * delta)
 	
 	if collision:
@@ -77,7 +76,7 @@ func combine(obj2, collision: KinematicCollision2D):
 				call_deferred("set_double_h")
 			else:
 				call_deferred("set_double_v")
-		if flag == 2:
+		elif flag == 2:
 			call_deferred("set_quad")
 		obj2.queue_free()
 
@@ -92,8 +91,9 @@ func split(body):
 			call_deferred("set_single")
 			obj.position = position + Vector2(0,80)
 			obj.call_deferred("set_single")
+			print("horz to sing")
 			emit_signal("double_was_broken")
-			get_parent().call_deferred("add_child", obj)
+			get_parent().add_child(obj)
 	elif is_doublev:
 		if abs(body.velocity.x) > abs(body.velocity.y * 2):
 			timer.start()
@@ -102,7 +102,8 @@ func split(body):
 			obj.position = position + Vector2(80,0)
 			obj.call_deferred("set_single")
 			emit_signal("double_was_broken")
-			get_parent().call_deferred("add_child", obj)
+			print("vert to sing")
+			get_parent().add_child(obj)
 	elif is_quad:
 		timer.start()
 		can_combine = false
@@ -110,12 +111,14 @@ func split(body):
 			call_deferred("set_double_h")
 			obj.position = position + Vector2(0,80)
 			obj.call_deferred("set_double_h")
+			print("quad to horz")
 		else:
 			call_deferred("set_double_v")
 			obj.position = position + Vector2(80,0)
 			obj.call_deferred("set_double_v")
+			print("quad to vert")
 		emit_signal("quad_was_broken")
-		get_parent().call_deferred("add_child", obj)
+		get_parent().add_child(obj)
 	
 	obj.velocity = -1 * velocity
 	if (velocity.dot(obj.velocity) < 0):
