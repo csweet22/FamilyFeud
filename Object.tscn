@@ -3,17 +3,20 @@
 [ext_resource path="res://ObjectBehaviour.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 32, 32 )
+[sub_resource type="CircleShape2D" id=7]
+radius = 32.0
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 32, 64 )
+[sub_resource type="CapsuleShape2D" id=8]
+radius = 32.0
+height = 64.0
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 64, 32 )
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 32.0
+height = 64.0
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 64, 64 )
+[sub_resource type="CapsuleShape2D" id=10]
+radius = 64.0
+height = 0.01
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 34, 36 )
@@ -76,15 +79,16 @@ shape = SubResource( 7 )
 
 [node name="DoubleVCollider" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 
 [node name="DoubleHCollider" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 3 )
+rotation = 1.5708
+shape = SubResource( 9 )
 
 [node name="QuadCollider" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource( 4 )
+shape = SubResource( 10 )
 
 [node name="SplitBox" type="Area2D" parent="."]
 visible = false
