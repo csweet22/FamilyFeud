@@ -34,11 +34,10 @@ text = "TEST TEXT"
 autostart = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-visible = false
-margin_left = 418.0
-margin_top = 47.0
-margin_right = 654.0
-margin_bottom = 81.0
+margin_left = 683.0
+margin_top = 7.0
+margin_right = 973.0
+margin_bottom = 23.0
 custom_styles/fg = SubResource( 3 )
 custom_styles/bg = SubResource( 4 )
 percent_visible = false
