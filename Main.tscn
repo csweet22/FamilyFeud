@@ -17,6 +17,7 @@ font_data = ExtResource( 1 )
 load_path = "res://.import/spritesheet.png-082752e0edc2ed125895ca0dabcde686.stex"
 
 [node name="Root" type="YSort"]
+position = Vector2( 3, 12 )
 script = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]

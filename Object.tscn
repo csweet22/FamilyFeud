@@ -187,6 +187,7 @@ tracks/1/keys = {
 }
 
 [node name="Object" type="KinematicBody2D"]
+z_index = 1
 collision_layer = 4
 collision_mask = 7
 script = ExtResource( 1 )
@@ -227,16 +228,17 @@ texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 32, 7, 32, 9 )
 
-[node name="DoubleV" type="Node2D" parent="."]
+[node name="DoubleV" type="YSort" parent="."]
 
 [node name="DoubleVSprite1" type="AnimatedSprite" parent="DoubleV"]
 scale = Vector2( 4, 4 )
+animation = "argue_left"
 playing = true
 
 [node name="DoubleVSprite2" type="AnimatedSprite" parent="DoubleV"]
 position = Vector2( 0, -75 )
 scale = Vector2( 4, 4 )
-z_index = -1
+animation = "argue_right"
 playing = true
 
 [node name="DoubleVShadow" type="Sprite" parent="DoubleV"]
@@ -246,12 +248,11 @@ texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 16, 16, 32 )
 
-[node name="Quad" type="Node2D" parent="."]
+[node name="Quad" type="YSort" parent="."]
 
 [node name="QuadSprite1" type="AnimatedSprite" parent="Quad"]
 position = Vector2( 32, -50 )
 scale = Vector2( 4, 4 )
-z_index = -1
 playing = true
 
 [node name="QuadSprite2" type="AnimatedSprite" parent="Quad"]
@@ -262,7 +263,6 @@ playing = true
 [node name="QuadSprite3" type="AnimatedSprite" parent="Quad"]
 position = Vector2( -32, -50 )
 scale = Vector2( 4, 4 )
-z_index = -1
 playing = true
 
 [node name="QuadSprite4" type="AnimatedSprite" parent="Quad"]

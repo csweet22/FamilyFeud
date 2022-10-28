@@ -79,15 +79,13 @@ func set_animation():
 	if velocity.x > 0:
 		if is_single:
 			set_single_sprite_anim("right")
-		else:
-			set_double_sprite_anim("argue_right", "argue_left")
-			set_quad_sprite_anim("argue_right", "argue_left", "argue_right", "argue_left")
 	else:
 		if is_single:
 			set_single_sprite_anim("left")
-		else:
-			set_double_sprite_anim("argue_left", "argue_right")
-			set_quad_sprite_anim("argue_left", "argue_right", "argue_left", "argue_right")
+
+
+#set_double_sprite_anim("argue_right", "argue_left")
+#set_quad_sprite_anim("argue_right", "argue_left", "argue_right", "argue_left")
 
 func _physics_process(delta):
 	velocity = velocity * Singleton.enemy_difficulty
@@ -119,13 +117,16 @@ func combine(obj2, collision: KinematicCollision2D):
 			if abs((collision.position - position).x) > abs((collision.position - position).y):
 				call_deferred("set_double_h")
 				set_double_sprite($Single/SingleSprite.frames, obj2.get_single_sprite())
+				set_double_sprite_anim("argue_left", "argue_right")
 			else:
 				call_deferred("set_double_v")
 				set_double_sprite($Single/SingleSprite.frames, obj2.get_single_sprite())
+				set_double_sprite_anim("argue_left", "argue_right")
 		elif flag == 2:
 			call_deferred("set_quad")
 			$Alert.play("mega_alert")
 			set_quad_sprite(get_double_sprite()[0],get_double_sprite()[1], obj2.get_double_sprite()[0], obj2.get_double_sprite()[1])
+			set_quad_sprite_anim("argue_left", "argue_left", "argue_right", "argue_right")
 		obj2.queue_free()
 
 func split(body):
@@ -182,6 +183,7 @@ func split(body):
 			print("quad to vert")
 		
 		obj.set_double_sprite(get_quad_sprite()[0], get_quad_sprite()[1])
+		obj.set_double_sprite_anim("argue_left","argue_right")
 		set_double_sprite(get_quad_sprite()[2], get_quad_sprite()[3])
 		emit_signal("quad_was_broken")
 		get_parent().add_child(obj)
