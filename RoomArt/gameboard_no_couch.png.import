@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gameboard.png-52b9cdd46b3a3cf8f4f175ee680fdd21.stex"
+path="res://.import/gameboard_no_couch.png-6bf78bb0b859b44c710a5c4ceb4b8ef1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RoomArt/gameboard.png"
-dest_files=[ "res://.import/gameboard.png-52b9cdd46b3a3cf8f4f175ee680fdd21.stex" ]
+source_file="res://RoomArt/gameboard_no_couch.png"
+dest_files=[ "res://.import/gameboard_no_couch.png-6bf78bb0b859b44c710a5c4ceb4b8ef1.stex" ]
 
 [params]
 

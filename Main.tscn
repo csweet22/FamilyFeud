@@ -5,7 +5,7 @@
 [ext_resource path="res://GameManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Main.gd" type="Script" id=4]
 [ext_resource path="res://UIArt/Buttons.png" type="Texture" id=5]
-[ext_resource path="res://gameboard_no_couch.png" type="Texture" id=6]
+[ext_resource path="res://RoomArt/gameboard_no_couch.png" type="Texture" id=6]
 [ext_resource path="res://ObjectArt/spritesheet.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
