@@ -10,10 +10,10 @@ outline_color = Color( 0.768627, 0.121569, 0.121569, 1 )
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.0666667, 1, 0, 1 )
+bg_color = Color( 0.388235, 0.901961, 0.282353, 1 )
 
 [sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 1, 0, 0, 1 )
+bg_color = Color( 0.0117647, 0.286275, 0.164706, 1 )
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -35,10 +35,11 @@ custom_fonts/normal_font = SubResource( 2 )
 autostart = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-margin_left = 777.0
-margin_top = 16.0
-margin_right = 1013.0
-margin_bottom = 50.0
+visible = false
+margin_left = 418.0
+margin_top = 47.0
+margin_right = 654.0
+margin_bottom = 81.0
 custom_styles/fg = SubResource( 3 )
 custom_styles/bg = SubResource( 4 )
 percent_visible = false

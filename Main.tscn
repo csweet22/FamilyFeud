@@ -1,17 +1,14 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Object.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GameManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Main.gd" type="Script" id=4]
 
 [node name="Root" type="Node2D"]
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_vertical_guides_": [  ]
 }
-
-[node name="KinematicBody2D8" parent="." instance=ExtResource( 1 )]
-position = Vector2( 836, 472 )
-collision_mask = 6
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 528, 289 )
@@ -34,3 +31,79 @@ scale = Vector2( 0.8125, 0.784274 )
 polygon = PoolVector2Array( 320, 230, 317.861, 312.868, 316, 385, 348, 381, 355, 233 )
 
 [node name="GameManager" parent="." groups=["GameManager"] instance=ExtResource( 3 )]
+
+[node name="StartTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="Spawn1" type="Node2D" parent="SpawnPoints" groups=["SpawnPoint"]]
+position = Vector2( 91, 79 )
+
+[node name="Spawn2" type="Node2D" parent="SpawnPoints" groups=["SpawnPoint"]]
+position = Vector2( 252, 85 )
+
+[node name="Spawn3" type="Node2D" parent="SpawnPoints" groups=["SpawnPoint"]]
+position = Vector2( 746, 85 )
+
+[node name="Spawn4" type="Node2D" parent="SpawnPoints" groups=["SpawnPoint"]]
+position = Vector2( 862, 102 )
+
+[node name="Spawn5" type="Node2D" parent="SpawnPoints" groups=["SpawnPoint"]]
+position = Vector2( 88, 497 )
+
+[node name="Spawn6" type="Node2D" parent="SpawnPoints" groups=["SpawnPoint"]]
+position = Vector2( 262, 496 )
+
+[node name="Spawn7" type="Node2D" parent="SpawnPoints" groups=["SpawnPoint"]]
+position = Vector2( 685, 512 )
+
+[node name="Spawn8" type="Node2D" parent="SpawnPoints" groups=["SpawnPoint"]]
+position = Vector2( 897, 476 )
+
+[node name="ColorRect" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+margin_left = -16.0
+margin_top = -27.0
+margin_right = 1096.0
+margin_bottom = 16.0
+color = Color( 0.227451, 0.286275, 0.411765, 1 )
+
+[node name="ColorRect3" type="ColorRect" parent="ColorRect"]
+margin_left = -291.0
+margin_top = 12.0
+margin_right = 19.0
+margin_bottom = 608.0
+color = Color( 0.227451, 0.286275, 0.411765, 1 )
+
+[node name="ColorRect4" type="ColorRect" parent="ColorRect"]
+margin_left = 998.0
+margin_top = 2.0
+margin_right = 1308.0
+margin_bottom = 598.0
+color = Color( 0.227451, 0.286275, 0.411765, 1 )
+
+[node name="ColorRect5" type="ColorRect" parent="ColorRect"]
+margin_left = 709.0
+margin_top = 248.0
+margin_right = 741.0
+margin_bottom = 376.0
+color = Color( 0.227451, 0.286275, 0.411765, 1 )
+
+[node name="ColorRect6" type="ColorRect" parent="ColorRect"]
+margin_left = 301.0
+margin_top = 243.0
+margin_right = 324.0
+margin_bottom = 365.0
+color = Color( 0.227451, 0.286275, 0.411765, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="ColorRect"]
+margin_left = -39.0
+margin_top = 581.0
+margin_right = 1073.0
+margin_bottom = 624.0
+color = Color( 0.227451, 0.286275, 0.411765, 1 )
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
