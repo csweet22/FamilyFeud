@@ -5,18 +5,7 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
-export var properties = [Vector2.ZERO, Vector2.ZERO]
 var object = load("res://Object.tscn")
-
-func _get_property_list():
-	var properties = []
-	# Same as "export(int) var my_property"
-	properties.append({
-		name = "my_property",
-		type = TYPE_INT
-	})
-	return properties
-
 
 
 func _process(delta):

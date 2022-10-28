@@ -267,6 +267,11 @@ func all_off():
 	$Quad/QuadSprite3.visible = false
 	$Quad/QuadSprite4.visible = false
 	
+	$Single/SingleDropShadow.visible = false
+	$Quad/QuadShadow.visible = false
+	$DoubleH/DoubleHShadow.visible = false
+	$DoubleV/DoubleVShadow.visible = false
+	
 	$SingleCollider.set_deferred("disabled", true)
 	$DoubleHCollider.set_deferred("disabled", true)
 	$DoubleVCollider.set_deferred("disabled", true)
@@ -285,6 +290,7 @@ func set_single():
 	all_off()
 	flag = 1
 	$Single/SingleSprite.visible = true
+	$Single/SingleDropShadow.visible = true
 	$SingleCollider.set_deferred("disabled", false)
 	is_single = true
 
@@ -293,6 +299,7 @@ func set_double_h():
 	flag = 2
 	$DoubleH/DoubleHSprite1.visible = true
 	$DoubleH/DoubleHSprite2.visible = true
+	$DoubleH/DoubleHShadow.visible = true
 	$DoubleHCollider.set_deferred("disabled", false)
 	is_doubleh = true
 	$SplitBox/DoubleH.set_deferred("disabled", false)
@@ -302,6 +309,7 @@ func set_double_v():
 	flag = 2
 	$DoubleV/DoubleVSprite1.visible = true
 	$DoubleV/DoubleVSprite2.visible = true
+	$DoubleV/DoubleVShadow.visible = true
 	$DoubleVCollider.set_deferred("disabled", false)
 	is_doublev = true
 	$SplitBox/DoubleV.set_deferred("disabled", false)
@@ -314,6 +322,7 @@ func set_quad():
 	$Quad/QuadSprite2.visible = true
 	$Quad/QuadSprite3.visible = true
 	$Quad/QuadSprite4.visible = true
+	$Quad/QuadShadow.visible = true
 	$QuadCollider.set_deferred("disabled", false)
 	is_quad = true
 	$SplitBox/Quad.set_deferred("disabled", false)
