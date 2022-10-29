@@ -39,7 +39,7 @@ margin_right = 304.0
 margin_bottom = 190.0
 focus_neighbour_top = NodePath("../StartButton")
 focus_neighbour_bottom = NodePath("../ExitButton")
-text = "Options"
+text = "Instructions"
 icon_align = 1
 
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
