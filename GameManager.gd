@@ -77,10 +77,10 @@ func _object_became_quad():
 
 func _on_ProgressTime_timeout():
 	print("Game over")
+	$AudioStreamPlayer2.play()
 	Singleton.enemy_difficulty = 1
-	get_tree().paused = true
+	Engine.set_time_scale(0.25)
 	$WaitBeforeGameoverTimer.start()
 
 func _on_WaitBeforeGameoverTimer_timeout():
 	get_tree().change_scene("res://GameOverScreen.tscn")
-	get_tree().paused = false

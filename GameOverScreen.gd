@@ -4,6 +4,7 @@ func _ready():
 	load_game()
 	Singleton.singleton_audio.stop()
 	$VBoxContainer/Container/TextEdit.grab_focus()
+	Engine.set_time_scale(1)
 
 func _on_Restart_pressed() -> void:
 	get_tree().change_scene("res://Main.tscn")
