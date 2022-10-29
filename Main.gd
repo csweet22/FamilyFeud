@@ -15,6 +15,8 @@ func _process(delta):
 
 func _on_StartTimer_timeout():
 	
+	$AudioStreamPlayer.play()
+	
 	for child in $SpawnPoints.get_children():
 		if child.is_in_group("SpawnPoint"):
 			var obj = object.instance()

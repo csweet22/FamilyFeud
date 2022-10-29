@@ -53,7 +53,8 @@ pitch_scale = 1.75
 
 [node name="Walk" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -16.208
+volume_db = -25.869
+pitch_scale = 1.46
 
 [connection signal="timeout" from="DashingTimer" to="." method="_on_DashingTimer_timeout"]
 [connection signal="timeout" from="DashCooldownTimer" to="." method="_on_DashCooldownTimer_timeout"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://ObjectBehaviour.gd" type="Script" id=1]
 [ext_resource path="res://ObjectArt/DropShadows.png" type="Texture" id=2]
 [ext_resource path="res://ObjectArt/alert.png" type="Texture" id=3]
 [ext_resource path="res://Audio/Break-apart.wav" type="AudioStream" id=4]
+[ext_resource path="res://Audio/hitHurt.wav" type="AudioStream" id=5]
 
 [sub_resource type="CapsuleShape2D" id=17]
 height = 32.0
@@ -351,6 +352,10 @@ anims/mega_alert = SubResource( 21 )
 
 [node name="BreakApart" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+
+[node name="CombinePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -7.448
 
 [connection signal="body_entered" from="SplitBox" to="." method="_on_SplitBox_body_entered"]
 [connection signal="body_exited" from="SplitBox" to="." method="_on_SplitBox_body_exited"]

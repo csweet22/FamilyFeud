@@ -113,6 +113,7 @@ func can_combine(obj1, obj2):
 
 func combine(obj2, collision: KinematicCollision2D):
 	if (id > obj2.id):
+		$CombinePlayer.play()
 		if flag == 1:
 			if abs((collision.position - position).x) > abs((collision.position - position).y):
 				call_deferred("set_double_h")

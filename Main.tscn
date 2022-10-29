@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://advanced_pixel-7.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://UIArt/Buttons.png" type="Texture" id=5]
 [ext_resource path="res://RoomArt/gameboard_no_couch.png" type="Texture" id=6]
 [ext_resource path="res://ObjectArt/spritesheet.png" type="Texture" id=7]
+[ext_resource path="res://Audio/powerUp.wav" type="AudioStream" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 41
@@ -147,6 +148,10 @@ region_enabled = true
 region_rect = Rect2( 14, 34, 16, 43 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -4.727
 
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 
