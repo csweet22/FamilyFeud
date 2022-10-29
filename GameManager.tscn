@@ -21,9 +21,11 @@ border_color = Color( 0, 0, 0, 1 )
 border_blend = true
 
 [node name="GameManager" type="Node"]
+pause_mode = 2
 script = ExtResource( 1 )
 
 [node name="Score" type="RichTextLabel" parent="."]
+pause_mode = 1
 margin_left = 51.0
 margin_top = -2.0
 margin_right = 769.0
@@ -32,9 +34,11 @@ custom_fonts/normal_font = SubResource( 2 )
 text = "TEST TEXT"
 
 [node name="counter" type="Timer" parent="Score"]
+pause_mode = 1
 autostart = true
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+pause_mode = 1
 margin_left = 683.0
 margin_top = 7.0
 margin_right = 973.0
@@ -44,14 +48,17 @@ custom_styles/bg = SubResource( 4 )
 percent_visible = false
 
 [node name="ProgressTime" type="Timer" parent="ProgressBar"]
+pause_mode = 1
 wait_time = 2.8
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 1
 stream = ExtResource( 3 )
 volume_db = -7.0
 
 [node name="WaitBeforeGameoverTimer" type="Timer" parent="."]
+pause_mode = 2
 
 [connection signal="timeout" from="Score/counter" to="." method="_on_counter_timeout"]
 [connection signal="timeout" from="ProgressBar/ProgressTime" to="." method="_on_ProgressTime_timeout"]
