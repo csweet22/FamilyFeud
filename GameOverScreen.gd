@@ -51,11 +51,36 @@ func load_game():
 		# Get the saved dictionary from the next line in the save file
 		var node_data = parse_json(save_game.get_line())
 		var l = Label.new()
-		print(node_data)
 		l.text = node_data.keys()[0] + ": " + str(node_data[node_data.keys()[0]])
 		$Score_Board.add_child(l)
 
+
 	save_game.close()
+	
+	var children =$Score_Board.get_children()
+#	for i in range (0, len(children)-1):
+#		for j in range (0, len(children)-1):
+#			var child1 = children[j]
+#			var child2 = children[j+1]
+#			var score1 = int(child1.text.split(": ")[1])
+#			var score2 = int(child2.text.split(": ")[1])
+#			if score2 > score1:
+#				$Score_Board.move_child(child2, 0)
+				
+
+	
+	for i in range (0, len(children)-1):
+		for j in range (0, len(children)-1):
+			var child1 = children[j]
+			var child2 = children[j+1]
+			var score1 = int(child1.text.split(": ")[1])
+			var score2 = int(child2.text.split(": ")[1])
+			if score1 > score2:
+				print(child1.text + " is bigger than " + child2.text )
+				var temp_index = child1.get_index()
+				$Score_Board.move_child(child1, child2.get_index())
+				$Score_Board.move_child(child2, temp_index)
+				
 
 
 func _on_Button_button_down():
