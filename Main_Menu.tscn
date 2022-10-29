@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Main_Menu.gd" type="Script" id=1]
 [ext_resource path="res://ObjectArt/ButtonTheme.tres" type="Theme" id=2]
 [ext_resource path="res://Audio/blipSelect.wav" type="AudioStream" id=3]
 [ext_resource path="res://RoomArt/gameboard_no_couch.png" type="Texture" id=4]
+[ext_resource path="res://gamelogo.png" type="Texture" id=5]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -57,7 +58,7 @@ stream = ExtResource( 3 )
 stream = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.521569, 0.658824, 0.760784, 1 )
+modulate = Color( 0.203922, 0.298039, 0.364706, 1 )
 position = Vector2( 511.278, 294.375 )
 scale = Vector2( 4, 4 )
 z_index = -40
@@ -65,6 +66,11 @@ texture = ExtResource( 4 )
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 513, 324 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
 
 [connection signal="focus_entered" from="VBoxContainer/StartButton" to="." method="_on_StartButton_focus_entered"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]

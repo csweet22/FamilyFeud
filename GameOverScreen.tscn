@@ -126,6 +126,7 @@ position = Vector2( -32, 32 )
 scale = Vector2( 4, 4 )
 frames = ExtResource( 8 )
 animation = "dash_right"
+frame = 1
 playing = true
 
 [node name="Score_Display" type="Label" parent="HBoxContainer"]
@@ -179,7 +180,6 @@ position = Vector2( 169, 534 )
 scale = Vector2( 4, 4 )
 frames = ExtResource( 6 )
 animation = "argue_left"
-frame = 1
 playing = true
 offset = Vector2( -5.75, -7.25 )
 
@@ -188,6 +188,7 @@ position = Vector2( 906, 534 )
 scale = Vector2( 4, 4 )
 frames = ExtResource( 4 )
 animation = "argue_right"
+frame = 1
 playing = true
 offset = Vector2( -5.75, -7.25 )
 
@@ -196,6 +197,7 @@ position = Vector2( 970, 533 )
 scale = Vector2( 4, 4 )
 frames = ExtResource( 5 )
 animation = "argue_left"
+frame = 1
 playing = true
 offset = Vector2( -5.75, -7.25 )
 
@@ -204,7 +206,6 @@ position = Vector2( 104, 534 )
 scale = Vector2( 4, 4 )
 frames = ExtResource( 7 )
 animation = "argue_right"
-frame = 1
 playing = true
 offset = Vector2( -5.75, -7.25 )
 
