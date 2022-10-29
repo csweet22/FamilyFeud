@@ -94,11 +94,33 @@ margin_top = 33.0
 margin_right = 270.0
 margin_bottom = 530.0
 
-[node name="Score_Display" type="Label" parent="."]
-margin_left = 137.0
-margin_top = 456.0
-margin_right = 905.0
-margin_bottom = 542.0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.743
+anchor_right = 0.535
+anchor_bottom = 0.743
+margin_left = -327.0
+margin_right = 297.0
+alignment = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+margin_left = 255.0
+margin_right = 255.0
+margin_bottom = 74.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="HBoxContainer/Panel"]
+position = Vector2( -32, 32 )
+scale = Vector2( 4, 4 )
+frames = ExtResource( 8 )
+animation = "dash_right"
+frame = 1
+playing = true
+
+[node name="Score_Display" type="Label" parent="HBoxContainer"]
+margin_left = 259.0
+margin_right = 404.0
+margin_bottom = 74.0
+grow_horizontal = 2
 custom_fonts/font = SubResource( 5 )
 text = "SCORE"
 align = 1
@@ -138,17 +160,8 @@ text = "Save Score!"
 stream = ExtResource( 3 )
 autoplay = true
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 426, 517 )
-scale = Vector2( 4, 4 )
-frames = ExtResource( 8 )
-animation = "dash_right"
-frame = 1
-playing = true
-offset = Vector2( -5.75, -7.25 )
-
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
-position = Vector2( 311, 511 )
+position = Vector2( 169, 534 )
 scale = Vector2( 4, 4 )
 frames = ExtResource( 6 )
 animation = "argue_left"
@@ -157,7 +170,7 @@ playing = true
 offset = Vector2( -5.75, -7.25 )
 
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="."]
-position = Vector2( 104, 511 )
+position = Vector2( 906, 534 )
 scale = Vector2( 4, 4 )
 frames = ExtResource( 4 )
 animation = "argue_right"
@@ -165,19 +178,19 @@ playing = true
 offset = Vector2( -5.75, -7.25 )
 
 [node name="AnimatedSprite4" type="AnimatedSprite" parent="."]
-position = Vector2( 168, 510 )
+position = Vector2( 970, 533 )
 scale = Vector2( 4, 4 )
 frames = ExtResource( 5 )
 animation = "argue_left"
-frame = 1
 playing = true
 offset = Vector2( -5.75, -7.25 )
 
 [node name="AnimatedSprite5" type="AnimatedSprite" parent="."]
-position = Vector2( 246, 511 )
+position = Vector2( 104, 534 )
 scale = Vector2( 4, 4 )
 frames = ExtResource( 7 )
 animation = "argue_right"
+frame = 1
 playing = true
 offset = Vector2( -5.75, -7.25 )
 

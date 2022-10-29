@@ -248,7 +248,6 @@ region_enabled = true
 region_rect = Rect2( 0, 16, 16, 32 )
 
 [node name="Quad" type="YSort" parent="."]
-visible = false
 
 [node name="QuadSprite1" type="AnimatedSprite" parent="Quad"]
 position = Vector2( 32, -50 )

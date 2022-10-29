@@ -36,6 +36,12 @@ func _process(delta):
 		$Walk.play()
 	elif input_vec.length() < 0.1:
 		$Walk.stop()
+	$DashLine.rotation = dir.angle() + PI/2
+	if Input.is_action_pressed("dash"):
+		$DashLine.visible = true
+	else:
+		$DashLine.visible = false
+		
 	
 
 func set_animation():
@@ -66,7 +72,8 @@ func set_state():
 		is_walking = true
 
 func _draw():
-	draw_line(Vector2.ZERO, Vector2(dir.x * 100,dir.y * 100), Color(0,1,1,0.5), 3)
+	pass
+#	draw_line(Vector2.ZERO, Vector2(dir.x * 100,dir.y * 100), Color(0,1,1,0.5), 3)
 
 func try_dash():
 	if can_dash:

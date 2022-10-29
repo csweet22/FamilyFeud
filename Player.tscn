@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://ObjectArt/DropShadows.png" type="Texture" id=2]
 [ext_resource path="res://Audio/dash-f.wav" type="AudioStream" id=3]
 [ext_resource path="res://Audio/walk_-_make_it_quiet.wav" type="AudioStream" id=4]
 [ext_resource path="res://ObjectArt/Player.tres" type="SpriteFrames" id=5]
+[ext_resource path="res://ObjectArt/dashLine.png" type="Texture" id=6]
 
 [sub_resource type="CapsuleShape2D" id=13]
 radius = 13.0
@@ -49,12 +50,14 @@ wait_time = 0.5
 one_shot = true
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2( 0, 31 )
+position = Vector2( 0, 5 )
 z_index = -1
-emitting = false
 lifetime = 0.2
 local_coords = false
+direction = Vector2( 0, -1 )
+spread = 0.0
 gravity = Vector2( 0, 0 )
+initial_velocity = 90.28
 angle = 720.0
 angle_random = 1.0
 scale_amount = 30.0
@@ -70,6 +73,12 @@ pitch_scale = 1.75
 stream = ExtResource( 4 )
 volume_db = -25.869
 pitch_scale = 1.46
+
+[node name="DashLine" type="Sprite" parent="."]
+scale = Vector2( 4, 4 )
+z_index = -2
+texture = ExtResource( 6 )
+offset = Vector2( 0, -11.211 )
 
 [connection signal="timeout" from="DashingTimer" to="." method="_on_DashingTimer_timeout"]
 [connection signal="timeout" from="DashCooldownTimer" to="." method="_on_DashCooldownTimer_timeout"]
