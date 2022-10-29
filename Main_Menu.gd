@@ -2,6 +2,7 @@ extends Control
 
 func _ready():
 	$VBoxContainer/StartButton.grab_focus()
+	Singleton.singleton_audio.play()
 
 func _on_StartButton_pressed():
 	get_tree().change_scene("res://Main.tscn")

@@ -77,9 +77,7 @@ func _object_became_quad():
 
 func _on_ProgressTime_timeout():
 	print("Game over")
-	get_tree().change_scene("res://GameOverScreen.tscn")
-		
+	$WaitBeforeGameoverTimer.start()
 
-	
-		
-	
+func _on_WaitBeforeGameoverTimer_timeout():
+	get_tree().change_scene("res://GameOverScreen.tscn")

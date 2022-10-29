@@ -2,6 +2,8 @@ extends CanvasLayer
 
 func _ready():
 	load_game()
+	Singleton.singleton_audio.stop()
+	$VBoxContainer/Container/TextEdit.grab_focus()
 
 func _on_Restart_pressed() -> void:
 	get_tree().change_scene("res://Main.tscn")
@@ -14,7 +16,8 @@ func _process(delta):
 	$HBoxContainer/Score_Display.text = "SCORE: " + str(Singleton.score)
 
 func _on_Quit_ready():
-	$PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/Restart.grab_focus()
+	pass
+#	$PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/Restart.grab_focus()
 
 func refresh_score_board():
 	pass

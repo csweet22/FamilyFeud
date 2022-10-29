@@ -7,6 +7,9 @@ extends Node2D
 
 var object = load("res://Object.tscn")
 
+func _ready():
+	if not Singleton.is_playing:
+		Singleton.singleton_audio.play()
 
 func _process(delta):
 	if Input.is_key_pressed(KEY_R):

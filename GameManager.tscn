@@ -49,7 +49,10 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-volume_db = -10.027
+volume_db = -7.0
+
+[node name="WaitBeforeGameoverTimer" type="Timer" parent="."]
 
 [connection signal="timeout" from="Score/counter" to="." method="_on_counter_timeout"]
 [connection signal="timeout" from="ProgressBar/ProgressTime" to="." method="_on_ProgressTime_timeout"]
+[connection signal="timeout" from="WaitBeforeGameoverTimer" to="." method="_on_WaitBeforeGameoverTimer_timeout"]
