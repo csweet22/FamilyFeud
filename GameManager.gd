@@ -33,6 +33,9 @@ func _process(delta):
 	
 	Singleton.enemy_difficulty += delta/100000
 
+func _ready():
+	$CanvasLayer/Label.visible = false
+
 func timer_multipliers():
 	if Singleton.score < 1000:
 		$ProgressBar/ProgressTime.wait_time = 6
@@ -77,6 +80,7 @@ func _object_became_quad():
 
 func _on_ProgressTime_timeout():
 	print("Game over")
+	$CanvasLayer/Label.visible = true
 	$AudioStreamPlayer2.play()
 	Singleton.enemy_difficulty = 1
 	Engine.set_time_scale(0.25)

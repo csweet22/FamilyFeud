@@ -6,6 +6,7 @@ func _ready():
 	$VBoxContainer/Container/TextEdit.grab_focus()
 	Engine.set_time_scale(1)
 
+
 func _on_Restart_pressed() -> void:
 	get_tree().change_scene("res://Main.tscn")
 	Singleton.score = 0
@@ -14,6 +15,8 @@ func _on_Quit_pressed() -> void:
 	get_tree().quit()
 
 func _process(delta):
+	if Input.is_key_pressed(KEY_ESCAPE):
+		get_tree().change_scene("res://Main_Menu.tscn")
 	$HBoxContainer/Score_Display.text = "SCORE: " + str(Singleton.score)
 
 func _on_Quit_ready():

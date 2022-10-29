@@ -10,6 +10,8 @@ var object = load("res://Object.tscn")
 func _ready():
 	if not Singleton.is_playing:
 		Singleton.singleton_audio.play()
+	Singleton.score = 0
+	Singleton.enemy_difficulty = 1
 
 func _process(delta):
 	if Input.is_key_pressed(KEY_R):
