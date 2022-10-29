@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Main_Menu.gd" type="Script" id=1]
 [ext_resource path="res://advanced_pixel-7.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Audio/blipSelect.wav" type="AudioStream" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
@@ -104,6 +105,15 @@ focus_neighbour_bottom = NodePath("../StartButton")
 text = "Exit"
 icon_align = 1
 
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="Select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[connection signal="focus_entered" from="VBoxContainer/StartButton" to="." method="_on_StartButton_focus_entered"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="focus_entered" from="VBoxContainer/OptionButton" to="." method="_on_OptionButton_focus_entered"]
 [connection signal="pressed" from="VBoxContainer/OptionButton" to="." method="_on_OptionButton_pressed"]
+[connection signal="focus_entered" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_focus_entered"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]

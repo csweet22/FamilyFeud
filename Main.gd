@@ -11,6 +11,8 @@ var object = load("res://Object.tscn")
 func _process(delta):
 	if Input.is_key_pressed(KEY_R):
 		get_tree().change_scene("res://Main_Menu.tscn")
+	if Input.is_action_just_pressed("pause"):
+		get_tree().paused = not get_tree().paused
 
 
 func _on_StartTimer_timeout():

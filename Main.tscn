@@ -18,47 +18,69 @@ font_data = ExtResource( 1 )
 load_path = "res://.import/spritesheet.png-082752e0edc2ed125895ca0dabcde686.stex"
 
 [node name="Root" type="YSort"]
+pause_mode = 2
 position = Vector2( 3, 12 )
 script = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+pause_mode = 1
 position = Vector2( 528, 289 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+pause_mode = 1
 collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+pause_mode = 1
 position = Vector2( -1, 95 )
 polygon = PoolVector2Array( 48, 458, 49, 27, 976, 28, 976, 461, 44, 461, -469, 934, 1574, 1044, 1505, -486, -514, -609, -555, 880, 12.4347, 482.89 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+pause_mode = 1
 position = Vector2( 118, 57 )
 scale = Vector2( 0.620192, 0.77621 )
 polygon = PoolVector2Array( 138.667, 262.815, 138.667, 452.197, 248.31, 452.197, 246.698, 261.527 )
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+pause_mode = 1
 position = Vector2( 435, 70 )
 scale = Vector2( 0.8125, 0.784274 )
 polygon = PoolVector2Array( 388.923, 252.463, 387.692, 448.823, 465.231, 450.098, 464, 252.463 )
 
 [node name="GameManager" parent="." groups=["GameManager"] instance=ExtResource( 3 )]
+pause_mode = 1
 good_color_fg = Color( 0.270588, 0.929412, 0.270588, 1 )
 bad_color_fg = Color( 0.835294, 0.141176, 0.141176, 1 )
 good_color_bg = Color( 0.0784314, 0.592157, 0.313726, 1 )
 bad_color_bg = Color( 0.552941, 0.0235294, 0.372549, 1 )
 
+[node name="Score" parent="GameManager" index="0"]
+pause_mode = 1
+
+[node name="counter" parent="GameManager/Score" index="1"]
+pause_mode = 1
+
 [node name="ProgressBar" parent="GameManager" index="1"]
+pause_mode = 1
 visible = false
 margin_left = 548.0
 margin_right = 1009.0
 margin_bottom = 37.0
 
+[node name="ProgressTime" parent="GameManager/ProgressBar" index="0"]
+pause_mode = 1
+
+[node name="AudioStreamPlayer" parent="GameManager" index="2"]
+pause_mode = 1
+
 [node name="StartTimer" type="Timer" parent="."]
+pause_mode = 1
 one_shot = true
 autostart = true
 
 [node name="SpawnPoints" type="Node2D" parent="."]
+pause_mode = 1
 
 [node name="Spawn1" type="Node2D" parent="SpawnPoints" groups=["SpawnPoint"]]
 position = Vector2( 91, 79 )
@@ -85,9 +107,11 @@ position = Vector2( 685, 512 )
 position = Vector2( 897, 476 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 1
 layer = 20
 
 [node name="Control" type="Control" parent="CanvasLayer"]
+pause_mode = 1
 margin_left = 111.0
 margin_top = 34.0
 margin_right = 151.0
@@ -128,12 +152,14 @@ custom_fonts/font = SubResource( 1 )
 text = "DASH"
 
 [node name="BG" type="Sprite" parent="."]
+pause_mode = 1
 position = Vector2( 511.278, 294.375 )
 scale = Vector2( 4, 4 )
 z_index = -40
 texture = ExtResource( 6 )
 
 [node name="Couch" type="Sprite" parent="."]
+pause_mode = 1
 position = Vector2( 781, 325 )
 scale = Vector2( 4, 4 )
 texture = SubResource( 2 )
@@ -141,6 +167,7 @@ region_enabled = true
 region_rect = Rect2( 32, 29, 16, 48 )
 
 [node name="Bar" type="Sprite" parent="."]
+pause_mode = 1
 position = Vector2( 239, 323 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 7 )
@@ -148,8 +175,11 @@ region_enabled = true
 region_rect = Rect2( 14, 34, 16, 43 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+pause_mode = 1
+position = Vector2( 509, 288 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 1
 stream = ExtResource( 8 )
 volume_db = -4.727
 

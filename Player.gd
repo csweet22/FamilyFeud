@@ -17,12 +17,15 @@ var intended_speed = 300
 var dir := Vector2.ZERO
 var velocity: Vector2
 
+var is_walking = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
+	set_state()
+	set_animation()
 	update()
 	if Input.is_action_just_released("dash"):
 		try_dash()
@@ -33,8 +36,34 @@ func _process(delta):
 		$Walk.play()
 	elif input_vec.length() < 0.1:
 		$Walk.stop()
-	print($Walk.playing)
 	
+
+func set_animation():
+	
+	var facing_right = dir.x > 0
+	
+	if facing_right:
+		if not is_walking and not dashing:
+			$AnimatedSprite.play("idle_right")
+		elif dashing:
+			$AnimatedSprite.play("dash_right")
+		elif is_walking:
+			$AnimatedSprite.play("right")
+	else:
+		if not is_walking and not dashing:
+			$AnimatedSprite.play("idle_left")
+		elif dashing:
+			$AnimatedSprite.play("dash_left")
+		elif is_walking:
+			$AnimatedSprite.play("left")
+		
+
+func set_state():
+	if velocity.length() < 0.1:
+		is_walking = false
+		dashing = false
+	elif velocity.length() > 0.1 and not dashing:
+		is_walking = true
 
 func _draw():
 	draw_line(Vector2.ZERO, Vector2(dir.x * 100,dir.y * 100), Color(0,1,1,0.5), 3)

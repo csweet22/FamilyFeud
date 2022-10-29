@@ -10,6 +10,7 @@ export(Color) var bad_color_bg = Color(1,0,0)
 
 var quads_alive = 0
 
+
 var s = 0
 var prog_time = 0
 func _on_counter_timeout():
