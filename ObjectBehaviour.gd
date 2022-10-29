@@ -73,6 +73,11 @@ func _process(delta):
 		set_double_v()
 	if Input.is_key_pressed(KEY_4):
 		set_quad()
+		
+	if can_combine:
+		set_sprite_mod(Color(1,1,1,1))
+	else:
+		set_sprite_mod(Color(0.7,0.8,0.9,1.0))
 
 
 func set_animation():
@@ -101,6 +106,17 @@ func _physics_process(delta):
 				combine(collision.collider, collision)
 			else:
 				velocity = velocity.bounce(collision.normal)
+
+func set_sprite_mod(color):
+	$Single/SingleSprite.modulate = color
+	$DoubleH/DoubleHSprite1.modulate = color
+	$DoubleH/DoubleHSprite2.modulate = color
+	$DoubleV/DoubleVSprite1.modulate = color
+	$DoubleV/DoubleVSprite2.modulate = color
+	$Quad/QuadSprite1.modulate = color
+	$Quad/QuadSprite2.modulate = color
+	$Quad/QuadSprite3.modulate = color
+	$Quad/QuadSprite4.modulate = color
 
 func can_combine(obj1, obj2):
 	if not obj2.is_in_group("Player"):

@@ -197,6 +197,7 @@ script = ExtResource( 1 )
 [node name="Single" type="Node2D" parent="."]
 
 [node name="SingleSprite" type="AnimatedSprite" parent="Single"]
+modulate = Color( 0.666667, 0.776471, 0.85098, 1 )
 position = Vector2( 0, -50 )
 scale = Vector2( 4, 4 )
 animation = "argue_left"
