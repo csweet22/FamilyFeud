@@ -38,8 +38,10 @@ func timer_multipliers():
 		$ProgressBar/ProgressTime.wait_time = 6
 	elif Singleton.score > 1000 and Singleton.score < 5000:
 		$ProgressBar/ProgressTime.wait_time = 4
-	elif Singleton.score > 5000:
+	elif Singleton.score > 5000 and Singleton.score < 10000:
 		$ProgressBar/ProgressTime.wait_time = 2.8
+	elif Singleton.score > 10000:
+		$ProgressBar/ProgressTime.wait_time = 2
 
 func score_multipliers():
 	if s >= 0 and s <1000:

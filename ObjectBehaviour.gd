@@ -123,12 +123,15 @@ func combine(obj2, collision: KinematicCollision2D):
 				call_deferred("set_double_v")
 				set_double_sprite($Single/SingleSprite.frames, obj2.get_single_sprite())
 				set_double_sprite_anim("argue_left", "argue_right")
+				
 		elif flag == 2:
 			call_deferred("set_quad")
 			$Alert.play("mega_alert")
 			set_quad_sprite(get_double_sprite()[0],get_double_sprite()[1], obj2.get_double_sprite()[0], obj2.get_double_sprite()[1])
 			set_quad_sprite_anim("argue_left", "argue_left", "argue_right", "argue_right")
 		obj2.queue_free()
+
+var offset = 50
 
 func split(body):
 	
@@ -268,6 +271,7 @@ func set_quad_sprite_anim(_tex1, _tex2, _tex3, _tex4):
 
 func all_off():
 	flag = 0
+	$AlertSprite.position.y = 0
 	$Single/SingleSprite.visible = false
 	$DoubleH/DoubleHSprite1.visible = false
 	$DoubleH/DoubleHSprite2.visible = false
@@ -320,6 +324,7 @@ func set_double_h():
 func set_double_v():
 	all_off()
 	flag = 2
+	$AlertSprite.position.y -= offset
 	$DoubleV/DoubleVSprite1.visible = true
 	$DoubleV/DoubleVSprite2.visible = true
 	$DoubleV/DoubleVShadow.visible = true

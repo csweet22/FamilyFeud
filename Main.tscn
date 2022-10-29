@@ -40,13 +40,13 @@ polygon = PoolVector2Array( 48, 458, 49, 27, 976, 28, 976, 461, 44, 461, -469, 9
 pause_mode = 1
 position = Vector2( 118, 57 )
 scale = Vector2( 0.620192, 0.77621 )
-polygon = PoolVector2Array( 138.667, 262.815, 138.667, 452.197, 248.31, 452.197, 246.698, 261.527 )
+polygon = PoolVector2Array( 143.504, 265.392, 143.504, 450.909, 246.698, 450.909, 246.698, 265.392 )
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
 pause_mode = 1
 position = Vector2( 435, 70 )
 scale = Vector2( 0.8125, 0.784274 )
-polygon = PoolVector2Array( 388.923, 252.463, 387.692, 448.823, 465.231, 450.098, 464, 252.463 )
+polygon = PoolVector2Array( 386.462, 263.938, 386.462, 447.548, 465.231, 447.548, 465.231, 263.938 )
 
 [node name="GameManager" parent="." groups=["GameManager"] instance=ExtResource( 3 )]
 pause_mode = 1
@@ -76,6 +76,7 @@ pause_mode = 1
 
 [node name="StartTimer" type="Timer" parent="."]
 pause_mode = 1
+wait_time = 2.0
 one_shot = true
 autostart = true
 

@@ -5,6 +5,7 @@ func _ready():
 
 func _on_Restart_pressed() -> void:
 	get_tree().change_scene("res://Main.tscn")
+	Singleton.score = 0
 
 func _on_Quit_pressed() -> void:
 	get_tree().quit()
