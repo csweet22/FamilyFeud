@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/haha_ur_dead.wav-0330f31569e174d9c2eb7b15ecf2334f.sample"
+
+[deps]
+
+source_file="res://Audio/haha_ur_dead.wav"
+dest_files=[ "res://.import/haha_ur_dead.wav-0330f31569e174d9c2eb7b15ecf2334f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

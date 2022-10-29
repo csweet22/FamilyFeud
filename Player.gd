@@ -28,6 +28,13 @@ func _process(delta):
 		try_dash()
 	set_input_vec()
 	set_input_dir()
+	
+	if input_vec.length() > 0.1 and $Walk.playing == false:
+		$Walk.play()
+	elif input_vec.length() < 0.1:
+		$Walk.stop()
+	print($Walk.playing)
+	
 
 func _draw():
 	draw_line(Vector2.ZERO, Vector2(dir.x * 100,dir.y * 100), Color(0,1,1,0.5), 3)
@@ -42,6 +49,8 @@ func dash():
 	can_dash = false
 	set_collision_mask_bit(2, false)
 	$DashingTimer.start()
+	$DashSFX.play()
+	$Walk.playing = false
 
 func set_input_vec():
 	var x_input = 0

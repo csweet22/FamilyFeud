@@ -152,6 +152,7 @@ func split(body):
 			get_parent().add_child(newPointUI)
 			vfx.position = position
 			get_parent().add_child(vfx)
+			$BreakApart.play()
 	elif is_doublev:
 		if abs(body.velocity.x) > abs(body.velocity.y * 2):
 			timer.start()
@@ -168,6 +169,7 @@ func split(body):
 			get_parent().add_child(newPointUI)
 			vfx.position = position
 			get_parent().add_child(vfx)
+			$BreakApart.play()
 	elif is_quad:
 		timer.start()
 		can_combine = false
@@ -182,6 +184,7 @@ func split(body):
 			obj.call_deferred("set_double_v")
 			print("quad to vert")
 		
+		$BreakApart.play()
 		obj.set_double_sprite(get_quad_sprite()[0], get_quad_sprite()[1])
 		obj.set_double_sprite_anim("argue_left","argue_right")
 		set_double_sprite(get_quad_sprite()[2], get_quad_sprite()[3])

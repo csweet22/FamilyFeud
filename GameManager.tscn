@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://GameManager.gd" type="Script" id=1]
 [ext_resource path="res://advanced_pixel-7.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Audio/red_bar.wav" type="AudioStream" id=3]
 
 [sub_resource type="DynamicFont" id=2]
 size = 43
@@ -45,6 +46,10 @@ percent_visible = false
 [node name="ProgressTime" type="Timer" parent="ProgressBar"]
 wait_time = 2.8
 one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.027
 
 [connection signal="timeout" from="Score/counter" to="." method="_on_counter_timeout"]
 [connection signal="timeout" from="ProgressBar/ProgressTime" to="." method="_on_ProgressTime_timeout"]

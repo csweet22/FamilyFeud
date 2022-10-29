@@ -60,6 +60,7 @@ func _quad_was_broken():
 	if quads_alive == 0:
 		$ProgressBar/ProgressTime.stop()
 		$ProgressBar.visible = false
+		$AudioStreamPlayer.stop()
 		
 	
 func _object_became_quad():
@@ -68,6 +69,7 @@ func _object_became_quad():
 	print("an obj has become quad!")
 	if $ProgressBar/ProgressTime.time_left == 0:
 		$ProgressBar/ProgressTime.start()
+		$AudioStreamPlayer.play()
 
 
 func _on_ProgressTime_timeout():

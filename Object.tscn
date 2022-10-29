@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://ObjectBehaviour.gd" type="Script" id=1]
 [ext_resource path="res://ObjectArt/DropShadows.png" type="Texture" id=2]
 [ext_resource path="res://ObjectArt/alert.png" type="Texture" id=3]
+[ext_resource path="res://Audio/Break-apart.wav" type="AudioStream" id=4]
 
 [sub_resource type="CapsuleShape2D" id=17]
 height = 32.0
@@ -198,7 +199,6 @@ script = ExtResource( 1 )
 visible = false
 position = Vector2( 0, -50 )
 scale = Vector2( 4, 4 )
-animation = "argue_left"
 playing = true
 
 [node name="SingleDropShadow" type="Sprite" parent="Single"]
@@ -213,7 +213,6 @@ region_rect = Rect2( 17, 10, 14, 6 )
 [node name="DoubleHSprite1" type="AnimatedSprite" parent="DoubleH"]
 position = Vector2( 32, -50 )
 scale = Vector2( 4, 4 )
-animation = "left"
 playing = true
 
 [node name="DoubleHSprite2" type="AnimatedSprite" parent="DoubleH"]
@@ -232,13 +231,11 @@ region_rect = Rect2( 32, 7, 32, 9 )
 
 [node name="DoubleVSprite1" type="AnimatedSprite" parent="DoubleV"]
 scale = Vector2( 4, 4 )
-animation = "argue_left"
 playing = true
 
 [node name="DoubleVSprite2" type="AnimatedSprite" parent="DoubleV"]
 position = Vector2( 0, -75 )
 scale = Vector2( 4, 4 )
-animation = "argue_right"
 playing = true
 
 [node name="DoubleVShadow" type="Sprite" parent="DoubleV"]
@@ -351,6 +348,9 @@ playback_speed = 2.0
 anims/Alert = SubResource( 19 )
 anims/RESET = SubResource( 20 )
 anims/mega_alert = SubResource( 21 )
+
+[node name="BreakApart" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 
 [connection signal="body_entered" from="SplitBox" to="." method="_on_SplitBox_body_entered"]
 [connection signal="body_exited" from="SplitBox" to="." method="_on_SplitBox_body_exited"]

@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Audio/dash-f.wav" type="AudioStream" id=3]
+[ext_resource path="res://Audio/walk_-_make_it_quiet.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 32.0
@@ -43,6 +45,15 @@ angle_random = 1.0
 scale_amount = 30.0
 scale_amount_curve = SubResource( 2 )
 color_ramp = SubResource( 3 )
+
+[node name="DashSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -5.0
+pitch_scale = 1.75
+
+[node name="Walk" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -16.208
 
 [connection signal="timeout" from="DashingTimer" to="." method="_on_DashingTimer_timeout"]
 [connection signal="timeout" from="DashCooldownTimer" to="." method="_on_DashCooldownTimer_timeout"]
